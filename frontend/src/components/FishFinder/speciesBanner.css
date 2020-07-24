@@ -1,0 +1,11 @@
+.Species-banner {
+  background: linear-gradient(to top, hsl(186, 100%, 30%), hsl(186, 60%, 60%));
+  text-align: center;
+}
+
+.Species-banner-content {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 200;
+  padding: 1.8rem;
+}

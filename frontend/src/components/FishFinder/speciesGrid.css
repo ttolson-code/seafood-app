@@ -1,0 +1,11 @@
+.Species-grid-container {
+  width: 90%;
+  max-width: 1400px;
+  margin: auto;
+  padding: 2rem 0rem;
+}
+
+.Species-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
