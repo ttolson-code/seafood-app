@@ -1,11 +1,12 @@
-.Species-banner {
+.fishFinder-species-banner {
   background: linear-gradient(to top, hsl(186, 100%, 30%), hsl(186, 60%, 60%));
   text-align: center;
 }
 
-.Species-banner-content {
+.fishFinder-species-banner-content {
   color: #fff;
   font-size: 2.5rem;
   font-weight: 200;
+  text-transform: capitalize;
   padding: 1.8rem;
 }
