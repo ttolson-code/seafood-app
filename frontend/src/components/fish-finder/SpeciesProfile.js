@@ -16,6 +16,8 @@ const SpeciesProfile = ({ speciesList }) => {
         <h1><em>{speciesInfo[0]['Scientific Name']}</em></h1>
       </div>
 
+      <img className="fishFinder-species-profile-illustration" src={speciesInfo[0]["Species Illustration Photo"].src} alt={speciesInfo[0]["Species Illustration Photo"].alt}></img>
+
       <br />
 
       <div>

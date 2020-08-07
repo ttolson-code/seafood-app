@@ -4,10 +4,18 @@
   /* padding: 2rem; */
   width: 90%;
   margin: 2rem auto;
+  border-radius: 3px;
 }
 
 .species-profile-header {
   padding: 2rem;
+}
+
+.fishFinder-species-profile-illustration {
+  height: 18rem;
+  width: 100%;
+  object-fit: scale-down;
+  padding: 1rem;
 }
 
 .species-profile-quote {
