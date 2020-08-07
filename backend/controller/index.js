@@ -1,4 +1,4 @@
-import SpeciesController from './Species.controller';
+import FishFinderController from './FishFinder.controller';
 import IndexController from './Index.controller'
 
-export { SpeciesController, IndexController };
+export { FishFinderController, IndexController };
