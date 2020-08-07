@@ -1,4 +1,4 @@
-# seafood-app
+# Seafood App
 
 ## Backend
 - node.js
