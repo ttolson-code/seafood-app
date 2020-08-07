@@ -4,7 +4,7 @@ import AppNav from './components/app/AppNav';
 import LandingPage from './components/landing-page/LandingPage'
 import FishFinderIndex from './components/fish-finder/FishFinderIndex';
 import NewsIndex from './components/news/NewsIndex';
-import './App.css';
+import './app.css';
 
 const App = () => {
  
