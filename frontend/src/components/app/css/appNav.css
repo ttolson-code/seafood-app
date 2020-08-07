@@ -1,0 +1,17 @@
+.appNav-container {
+  text-align: right;
+  padding: 1rem;
+}
+
+.appNav-link {
+  color: #999;
+  /* color: #fff; */
+  font-size: 1.2rem;
+  padding: 1rem;
+  outline: none;
+  text-decoration: none;
+}
+
+.appNav-link.active {
+  color: #fff;
+}
