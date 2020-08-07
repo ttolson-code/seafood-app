@@ -6,6 +6,7 @@ import FishFinderNav from '../fish-finder/FishFinderNav';
 import FishFinderBanner from '../fish-finder/FishFinderBanner';
 import SpeciesList from './SpeciesList';
 import SpeciesProfile from './SpeciesProfile';
+import './css/fishFinderIndex.css'
 
 const FishFinderIndex = (props) => {
   const route = useRouteMatch();
@@ -25,7 +26,11 @@ const FishFinderIndex = (props) => {
   }, []);
 
   if (!loading) {
-    return ("Loading...")
+    return (
+      <div className="fishFinder-loader-container">
+        <div className="fishFinder-loader"></div>
+      </div>
+    )
   }
 
   return (
