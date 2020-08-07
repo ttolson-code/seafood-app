@@ -2,7 +2,7 @@ import express from 'express';
 import esm from 'esm';
 import cors from 'cors';
 import config from './config';
-import { IndexController, SpeciesController } from './controller';
+import { IndexController, FishFinderController } from './controller';
 import { mongoConnect } from './helpers/mongoConnection';
 import './helpers/cronJobs';
 
@@ -17,7 +17,7 @@ app.use(cors());
 
 // Controllers(APIs).
 app.use('/', IndexController);
-app.use('/species', SpeciesController);
+app.use('/fish-finder', FishFinderController);
 
 // Connect to MongoDb and then start express server.
 mongoConnect()
