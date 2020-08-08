@@ -39,7 +39,7 @@ https://www.fishwatch.gov/api/species ( api )
 
 Docker cannot traverse backwards so it must be in the root directory with everything that needs to be copied into the container. Container is based on Ubuntu:20.04. 
 
-Manually build the container: ```shell
+Manually build the container: ```console
                               $ docker build -t seafood .
                               ```
 
