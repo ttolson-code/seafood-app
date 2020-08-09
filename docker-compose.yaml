@@ -16,7 +16,7 @@ services:
     networks:
       - seafood-app
     ports:
-      - "27107:27017"
+      - "27107:27107"
 
 # local network for containers to run on       
 networks:
