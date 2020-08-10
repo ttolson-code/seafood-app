@@ -10,7 +10,6 @@ const App = () => {
  
   return (
     <div className="app-container">
-      <AppNav />
 
       <Switch>
         <Route exact path="/">
@@ -18,10 +17,12 @@ const App = () => {
         </Route>
 
         <Route path="/fish-finder">
+          <AppNav />
           <FishFinderIndex />
         </Route>
 
         <Route path="/news">
+          <AppNav />
           <NewsIndex />
         </Route>
 
