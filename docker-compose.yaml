@@ -1,24 +1,37 @@
 version: '3.7'
 services:
-  # express server / frontend
-  app:
+  # frontend
+  seafood-app:
+    container_name: seafood-app
+    stdin_open: true
     build:
-      context: .
+      context: ./frontend
       dockerfile: Dockerfile
-    networks:
-      - seafood-app
     links:
-      - "mongo"
+      - "express-server"
+    ports:
+      - "3000:3000"
+
+  # express
+  express-server:
+    container_name: express-server
+    stdin_open: true
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    links:
+      - "mongo-db"
+    ports:
+      - "5000:5000"
+    environment:
+      DB_URL: "mongodb://mongo-db:27017/"
+      DB_NAME: "seafood-app"
 
   # database
-  mongo:
+  mongo-db:
+    container_name: mongo-db
     image: mongo:latest
-    networks:
-      - seafood-app
     ports:
-      - "27107:27107"
-
-# local network for containers to run on       
-networks:
-  seafood-app:
-    driver: bridge
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: "seafood-app"
