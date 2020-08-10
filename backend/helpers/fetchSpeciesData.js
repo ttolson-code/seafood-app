@@ -16,7 +16,7 @@ async function fetchSpeciesData() {
   }
 }
 
-export default async function runCron() {
+export default async function updateDatabase() {
   const [ speciesData ] = await Promise.all([ fetchSpeciesData() ]);
   const db = getMongoConnection();
   
