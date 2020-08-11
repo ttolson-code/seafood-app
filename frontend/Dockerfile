@@ -17,8 +17,7 @@ WORKDIR /app
 # copy all necessary files to /app in the docker container during build time
 COPY public /app/public
 COPY src /app/src
-COPY package.json /app/
-COPY entrypoint.sh /app/
+COPY package*.json /app/
 
 RUN npm install
 

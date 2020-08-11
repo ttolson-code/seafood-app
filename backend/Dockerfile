@@ -19,10 +19,7 @@ WORKDIR /backend
 # copy all necessary files to /app in the docker container during build time
 COPY controller /backend/controller
 COPY helpers /backend/helpers
-COPY package*.json /backend/
-COPY config.js /backend/
-COPY server.js /backend/
-COPY entrypoint.sh /backend/
+COPY ["package*.json", "config.js", "server.js", "/backend/"]
 
 RUN npm install
 
