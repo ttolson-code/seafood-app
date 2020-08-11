@@ -49,7 +49,7 @@ To build the containers run the following command from the root directory which 
 $ docker-compose -f docker-compose.yaml build
  ```
 
-To run the containers for locally development run the following command from the root directory which contains the file ```docker-compose.yaml```
+To run the containers for local development run the following command from the root directory which contains the file ```docker-compose.yaml```
 
 ```console
 $ docker-compose -f docker-compose.yaml up
