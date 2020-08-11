@@ -59,7 +59,7 @@ $ docker-compose -f docker-compose.yaml up
 
 The ```devops``` directory contains files for automated deployment and development.
 
-mongoHostExport.sh contains a ```$DB_URL``` and a ```$DB_NAME``` variable. If you do not wish to use docker-compose you can run the following command ```source ./devops/mongoHostExport.sh```. This will export the variables to your bash env where they will be consumed by ```backend/config.js```
+localExport.sh contains a ```$DB_URL``` and a ```$DB_NAME``` variable. If you do not wish to use docker-compose you can run the following command ```source ./devops/localExport.sh```. This will export the variables to your bash env where they will be consumed by ```backend/config.js```.
 
 ```console
   mongoDb: {
