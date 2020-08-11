@@ -10,21 +10,27 @@ const App = () => {
  
   return (
     <div className="app-container">
-      <AppNav />
 
       <Switch>
+
+        {/* Url matches exactly / */}
         <Route exact path="/">
           <LandingPage />
         </Route>
-
+        
+        {/* Url matches fish-finder/* */}
         <Route path="/fish-finder">
+          <AppNav />
           <FishFinderIndex />
         </Route>
-
+        
+        {/* Url matches /news/* */}
         <Route path="/news">
+          <AppNav />
           <NewsIndex />
         </Route>
-
+        
+        {/* If url does not match /fishfinder/*, /news/*, or "/" redirect to "/" */}
         <Redirect to="/" />
       </Switch>
     </div>
