@@ -33,6 +33,7 @@ export default function SpeciesList({ speciesList }) {
           name={species["Species Name"]}
           alias={species["Species Aliases"].replace(/(<([^>]+)>)/ig, '')}
           harvestType={species["Harvest Type"]}
+          path={species["Path"]}
         />
       );
     });

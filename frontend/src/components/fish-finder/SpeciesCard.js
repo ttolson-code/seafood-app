@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import './css/speciesCard.css'
 
 const SpeciesCard = (props) => {
+  // Uses "path" data from fishwatch.gov. Example: /profiles/atlantic-salmon
+  const path = props.path;
 
   return (
     <li className="fishFinder-species-card">
-      <Link className="fishFinder-species-card-link" to={`/fish-finder/${props.name}`}>
+      <Link className="fishFinder-species-card-link" to={`/fish-finder${path}`}>
         <div className="fishFinder-species-card-content">
           {props.harvestType === "Farmed" && 
             <div className="fishFinder-species-card-farmed-tag"><p>Farmed</p></div>

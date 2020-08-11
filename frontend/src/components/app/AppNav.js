@@ -7,7 +7,7 @@ const AppNav = () => {
     <nav className="appNav-container">
       <NavLink exact to="/" className="appNav-link">Home</NavLink>
       <NavLink 
-        to="/fish-finder/all-profiles" 
+        to="/fish-finder/profiles/all-profiles" 
         className="appNav-link" 
         isActive={() => { 
           if(window.location.pathname.includes("fish-finder")) {
