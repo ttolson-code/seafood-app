@@ -1,29 +1,58 @@
 .species-profile-container {
   background-color: #f1f1f1;
   text-align: center;
-  /* padding: 2rem; */
   width: 90%;
   margin: 2rem auto;
   border-radius: 3px;
 }
 
-.species-profile-header {
-  padding: 2rem;
-}
 
 .fishFinder-species-profile-illustration {
   height: 18rem;
   width: 100%;
   object-fit: scale-down;
+  padding: 4rem 1rem 2rem;
+}
+
+.species-profile-scientific {
   padding: 1rem;
+}
+
+.species-profile-alias {
+  padding: 1.5rem;
+  padding-bottom: 2rem;
 }
 
 .species-profile-quote {
   background-color: navy;
   color: #ffffff;
-  padding: 2rem;
+  padding: 4rem;
 }
 
 .species-profile-info-container {
-  padding: 2rem;
+  padding: 2rem 0rem;
+  width: 80%;
+  max-width: 60rem;;
+  margin: auto;
+}
+
+table {
+  width: 100%;
+  margin: 1rem auto; 
+  
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th { 
+  padding: 0.5rem;
+  text-align: left;
+}
+
+td {
+  padding: 0.5rem;
+  text-align: center;
 }
