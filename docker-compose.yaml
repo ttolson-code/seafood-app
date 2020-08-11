@@ -19,13 +19,13 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    depends_on: 
+    depends_on: # ensure mongo-db is up before express container starts
       - mongo-db
     links:
       - "mongo-db"
     ports:
       - "5000:5000"
-    environment:
+    environment: # these are not being used at this time
       DB_URL: "mongodb://mongo-db:27017/"
       DB_NAME: "seafood-app"
 
