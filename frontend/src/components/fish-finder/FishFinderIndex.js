@@ -8,7 +8,7 @@ import SpeciesList from './SpeciesList';
 import SpeciesProfile from './SpeciesProfile';
 import './css/fishFinderIndex.css'
 
-const FishFinderIndex = (props) => {
+const FishFinderIndex = () => {
   const route = useRouteMatch();
 
   const [speciesList, setSpeciesList] = useState({});
@@ -40,11 +40,11 @@ const FishFinderIndex = (props) => {
       <FishFinderBanner />
       <Switch>
         {/* Use Regex to constrain route. */}
-        <Route exact path="/fish-finder/:profileId(all-profiles|wild-profiles|farmed-profiles)">
+        <Route exact path="/fish-finder/profiles/:profileId(all-profiles|wild-profiles|farmed-profiles)">
           <SpeciesList speciesList={speciesList} />
         </Route> 
         
-        <Route exact path="/fish-finder/:profileId">
+        <Route exact path="/fish-finder/profiles/:profileId">
           <SpeciesProfile speciesList={speciesList}/>
         </Route> 
 
