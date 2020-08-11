@@ -5,8 +5,8 @@ const config = {
     port: 5000,
   },
   mongoDb: {
-    mongoUrl: 'mongodb://localhost:27017/',
-    dbName: 'seafood-app',
+    mongoUrl: (process.env.DB_URL),
+    dbName: (process.env.DB_NAME),
     options: {
       useUnifiedTopology: true,
       useNewUrlParser: true,
