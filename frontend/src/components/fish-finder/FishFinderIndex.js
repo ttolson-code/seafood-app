@@ -44,7 +44,7 @@ const FishFinderIndex = () => {
           <SpeciesList speciesList={speciesList} />
         </Route> 
         
-        <Route exact path="/fish-finder/profiles/:profileId">
+        <Route exact path="/fish-finder/profiles/:speciesId">
           <SpeciesProfile speciesList={speciesList}/>
         </Route> 
 
