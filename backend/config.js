@@ -10,7 +10,6 @@ const config = {
     options: {
       useUnifiedTopology: true,
       useNewUrlParser: true,
-      promiseLibrary: Promise
     }
   }
 }
