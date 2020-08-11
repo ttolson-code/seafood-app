@@ -20,8 +20,8 @@ COPY src /app/src
 COPY package.json /app/
 COPY entrypoint.sh /app/
 
-EXPOSE 3000
+RUN npm install
 
-ENTRYPOINT ["./entrypoint.sh"]
+EXPOSE 3000
 
 CMD ["npm", "start"]
