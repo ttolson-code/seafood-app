@@ -17,7 +17,7 @@ async function fetchSpeciesData() {
 }
 
 export default async function updateDatabase() {
-  const [ speciesData ] = await Promise.all([ fetchSpeciesData() ]);
+  const speciesData = await fetchSpeciesData();
   const db = getMongoConnection();
   
   // Drop species collection in order to reseed with fresh data.
