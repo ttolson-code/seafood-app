@@ -28,6 +28,4 @@ RUN npm install
 
 EXPOSE 5000
 
-ENTRYPOINT ["./entrypoint.sh"]
-
 CMD ["npm", "run", "dev"]
