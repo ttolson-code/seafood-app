@@ -13,7 +13,7 @@ RUN apt-get update && \
     unzip awscliv2.zip && \
     ./aws/install
 
-# change dir to /app
+# change dir to /backend
 WORKDIR /backend
 
 # copy all necessary files to /app in the docker container during build time
