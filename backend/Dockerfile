@@ -1,6 +1,5 @@
 FROM ubuntu:20.04
 
-ENV NODE_PATH="/backend/node_modules/"
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 
 # install dependencies
