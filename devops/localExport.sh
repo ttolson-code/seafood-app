@@ -5,3 +5,4 @@
 ### Variables ###
 export DB_URL="mongodb://localhost:27017/"
 export DB_NAME="seafood-app"
+export HOST_ADDRESS="localhost"
