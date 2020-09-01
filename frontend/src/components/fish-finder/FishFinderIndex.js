@@ -15,7 +15,8 @@ const FishFinderIndex = () => {
   const [loading, setLoading] = useState(false);
 
   async function fetchFishFinderAPI() {
-    const res = await fetch(`http://localhost:5000/fish-finder/all-profiles`);
+    // The fetch url needs to be made an environment variable using process.env in the brackets didnt work
+    const res = await fetch('http://api.seafood-app.com/fish-finder/all-profiles');
     const resJson = await res.json();
     setSpeciesList(resJson);
     setLoading(true);
