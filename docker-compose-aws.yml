@@ -1,0 +1,45 @@
+version: '3.7'
+services:
+  # nginx
+  nginx-proxy:
+    container_name: nginx-proxy
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+
+  # frontend
+  seafood-app:
+    container_name: seafood-app
+    stdin_open: true
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+  # express
+  express-server:
+    container_name: express-server
+    stdin_open: true
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on: # ensure mongo-db is up before express container starts
+      - mongo-db
+    ports:
+      - "5000:5000"
+    environment:
+      DB_URL: "mongodb://mongo-db:27017/"
+      DB_NAME: "seafood-app"
+      HOST_ADDRESS: "localhost"
+
+  # database
+  mongo-db:
+    container_name: mongo-db
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: "seafood-app"
