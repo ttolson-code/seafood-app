@@ -11,9 +11,8 @@ function configureAwsCli() {
 }
 
 function buildImages() {
-    ls -ll
-    # DEPLOYABLE_IMAGES=$(cat ../docker-compose-aws.yml | grep 'image: ' | cut -d':' -f 2 | tr -d '"')
-    # echo ${DEPLOYABLE_IMAGES}
+    DEPLOYABLE_IMAGES=$(cat docker-compose-aws.yml | grep 'image: ' | cut -d':' -f 2 | tr -d '"')
+    echo ${DEPLOYABLE_IMAGES}
 }
 
 ### Main ###
