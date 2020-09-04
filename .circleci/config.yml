@@ -14,7 +14,7 @@ jobs:
           command: |
             ./devops/installPackages.sh
       - run:
-          name: Generate AWS ECR Login
+          name: Build Images
           command: |
             ./devops/dockerBuild.sh
       # - run:
