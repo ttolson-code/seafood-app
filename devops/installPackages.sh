@@ -1,9 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 function installDependencies() {
-    echo "Installing Dependencies..."
+    echo "Updating..."
     yum update -y
-    yum install jq zip unzip curl python-pip -y
+    echo "Update complete...Installing dependencies"
+    yum install jq zip unzip curl python-pip -y >> /dev/null/
     curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     unzip awscliv2.zip
     ./aws/install
