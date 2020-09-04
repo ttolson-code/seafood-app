@@ -1,7 +1,39 @@
 version: 2.1
-orbs:
-  node: circleci/node@3.0.0
+
+jobs:
+  build-dashboard:
+    docker:
+      - image: amazonlinux:latest
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: |
+            ./devops/installPackages.sh
+      - run:
+          name: Generate AWS ECR Login
+          command: |
+            echo "Configuring AWS..."
+            aws configure set aws_access_key_id ${ACCESS_KEY}
+            aws configure set aws_secret_access_key ${SECRET_KEY}
+            aws configure set default.region $AWS_DEFAULT_REGION
+            aws configure set default.output json
+            login="$(aws ecr get-login --no-include-email)"
+            ${login}
+      - run:
+          name: Build Images with Docker
+          command: |
+            /usr/local/bin/python -m pip install --upgrade pip
+            docker build -t "${ECR_URI}:${SHORT_GIT_HASH}" -t "${ECR_URI}:latest" .
+            docker push "${ECR_URI}"
+          no_output_timeout: 30m
+
 workflows:
-  node-tests:
+  version: 2
+  build_deploy:
     jobs:
-      - node/test
+      - build-dashboard:
+          # filters:
+          #   branches:
+          #     only: master
