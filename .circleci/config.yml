@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  build-dashboard:
+  build-images:
     docker:
       - image: amazonlinux:latest
     working_directory: ~/repo
@@ -33,7 +33,7 @@ workflows:
   version: 2
   build_deploy:
     jobs:
-      - build-dashboard:
-          # filters:
-          #   branches:
-          #     only: master
+      - build-images:
+          filters:
+            branches:
+              only: feature/configure-for-aws
