@@ -15,7 +15,7 @@ function buildImages() {
     for REPOS in ${REPOSITORY_NAME}
     do
         IMAGE_DIR=$(cat docker-compose-aws.yml | grep 'context: ' | cut -d':' -f 2)
-        docker build -t ${REPOSITORY_NAME}:${TAG} -t ${REPOSITORY_NAME}:latest ./${IMAGE_DIR}/Dockerfile
+        docker build -t ${REPOSITORY_NAME}:${TAG} -t ${REPOSITORY_NAME}:latest ${IMAGE_DIR}/Dockerfile
     done
 }
 
@@ -41,4 +41,4 @@ echo 'export DATE=$(date '+%Y-%m-%d')' >> $BASH_ENV
 source $BASH_ENV
 
 # configureAwsCli
-buildImages
+# buildImages
