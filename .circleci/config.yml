@@ -16,12 +16,7 @@ jobs:
       - run:
           name: Generate AWS ECR Login
           command: |
-            REPOSITORY_NAME=$(cat docker-compose-aws.yml | grep 'container_name: ' | cut -d':' -f 2)
-            for REPOS in ${REPOSITORY_NAME}
-            do
-                IMAGE_DIR=$(cat docker-compose-aws.yml | grep 'context: ' | cut -d':' -f 2)
-                docker build -t ${REPOSITORY_NAME}:${TAG} -t ${REPOSITORY_NAME}:latest ./${IMAGE_DIR}/Dockerfile
-            done
+            ./devops/dockerBuild.sh
       # - run:
       #     name: Build Images with Docker
       #     command: |

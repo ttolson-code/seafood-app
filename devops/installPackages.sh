@@ -3,12 +3,16 @@
 function installDependencies() {
     echo "Installing Dependencies..."
     yum update -y
-    yum install jq zip unzip curl python-pip docker-ce -y
+    yum install jq zip unzip curl python-pip -y
     curl "https://d1vvhvl2y92vvt.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
     unzip awscliv2.zip
     ./aws/install
     curl -o /usr/bin/ecs-cli "https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest"
     chmod +x /usr/bin/ecs-cli
+    echo "Installing amazon linux extras..."
+    amazon-linux-extras install docker
+    usermod -a -G docker ${USER}
+    service docker start
 }
 
 ### Main ###
