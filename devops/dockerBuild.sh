@@ -13,6 +13,7 @@ function configureAwsCli() {
 
 function buildImages() {
     docker-compose -f docker-compose-aws.yml build
+    docker image ls
     # REPOSITORY_NAME=$(cat docker-compose-aws.yml | grep 'container_name: ' | cut -d':' -f 2)
 
     # for REPOS in $REPOSITORY_NAME
