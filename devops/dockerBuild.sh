@@ -15,7 +15,7 @@ function buildImages() {
     for REPOS in ${REPOSITORY_NAME}
     do
         IMAGE_DIR=$(cat docker-compose-aws.yml | grep 'context: ' | cut -d':' -f 2)
-        docker build -t ${REPOS}:${TAG} -t ${REPOS}:latest ${IMAGE_DIR}/
+        docker build -t nginx:latest ./nginx/
     done
     docker image ls
 }
