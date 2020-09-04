@@ -10,9 +10,7 @@ function installDependencies() {
     curl -o /usr/bin/ecs-cli "https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest"
     chmod +x /usr/bin/ecs-cli
     echo "Installing amazon linux extras..."
-    amazon-linux-extras install docker
-    usermod -a -G docker ${USER}
-    service docker start
+    amazon-linux-extras install docker -y
 }
 
 ### Main ###
