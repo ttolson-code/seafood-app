@@ -11,11 +11,34 @@ function configureAwsCli() {
 }
 
 function buildImages() {
-    DEPLOYABLE_IMAGES=$(cat docker-compose-aws.yml | grep 'image: ' | cut -d':' -f 2 | tr -d '"')
-    echo ${DEPLOYABLE_IMAGES}
+    REPOSITORY_NAME=$(cat docker-compose-aws.yml | grep 'container_name: ' | cut -d':' -f 2)
+    for REPOS in ${REPOSITORY_NAME}
+    do
+        IMAGE_DIR=$(cat docker-compose-aws.yml | grep 'context: ' | cut -d':' -f 2)
+        docker build -t ${REPOSITORY_NAME}:${TAG} -t ${REPOSITORY_NAME}:latest ./${IMAGE_DIR}/Dockerfile
+    done
 }
 
 ### Main ###
+
+#Ensure CI/CD variables are set otherwise exit
+# if [[ -z "${AWS_REGION}" ]]; then
+#   echo "AWS_REGION is empty"
+#   exit 1
+# fi
+# if [[ -z "${ACCESS_KEY}" ]]; then
+#   echo "ACCESS_KEY is empty"
+#   exit 1
+# fi
+# if [[ -z "${SECRET_KEY}" ]]; then
+#   echo "SECRET_KEY is empty"
+#   exit 1
+# fi
+
+# export environment variables 
+echo 'export TAG=$(echo ${CIRCLE_SHA1} | head -c 8)' >> $BASH_ENV
+echo 'export DATE=$(date '+%Y-%m-%d')' >> $BASH_ENV
+source $BASH_ENV
 
 # configureAwsCli
 buildImages
