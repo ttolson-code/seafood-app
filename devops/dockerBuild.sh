@@ -12,14 +12,13 @@ function configureAwsCli() {
 }
 
 function buildImages() {
-    IMAGES=["express-server" "seafood-app" "nginx-proxy" "mongo-gb"]
+    IMAGES=["express-server:latest" "seafood-app:latest" "nginx-proxy:latest" "mongo-gb:latest"]
 
     docker-compose -f docker-compose-aws.yml build
 
-    for IMAGE in $IMAGES
-    do
-        docker tag $IMAGE $ECR_URI/$IMAGE
-        docker push ${ECR_URI}/$IMAGE
+    for IMAGE in ${IMAGES}; do
+        docker tag "${IMAGE}" "${ECR_URI}/${IMAGE}"
+        docker push "${ECR_URI}/${IMAGE}"
     done
 
     docker image ls
