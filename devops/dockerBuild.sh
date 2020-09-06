@@ -19,8 +19,10 @@ function buildImages() {
     for IMAGE in $IMAGES
     do
         docker tag $IMAGE $ECR_URI/$IMAGE
-        docker push $ $ECR_URI/$IMAGE
+        docker push ${ECR_URI}/$IMAGE
     done
+
+    docker image ls
     # REPOSITORY_NAME=$(cat docker-compose-aws.yml | grep 'container_name: ' | cut -d':' -f 2)
 
     # for REPOS in $REPOSITORY_NAME
