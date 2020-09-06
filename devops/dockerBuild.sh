@@ -12,8 +12,15 @@ function configureAwsCli() {
 }
 
 function buildImages() {
+    IMAGES=["express-server" "seafood-app" "nginx-proxy" "mongo-gb"]
+
     docker-compose -f docker-compose-aws.yml build
-    docker image ls
+
+    for IMAGE in $IMAGES
+    do
+        docker tag $IMAGE $ECR_URI/$IMAGE
+        docker push $ $ECR_URI/$IMAGE
+    done
     # REPOSITORY_NAME=$(cat docker-compose-aws.yml | grep 'container_name: ' | cut -d':' -f 2)
 
     # for REPOS in $REPOSITORY_NAME
