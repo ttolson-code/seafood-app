@@ -18,7 +18,7 @@ function createService() {
     --launch-type FARGATE --create-log-groups \
     --cluster ${CLUSTER_NAME} \
     --timeout 15 --target-group-arn ${TARGET_GROUP_ARN} \
-    --container-name dashboard --container-port 8000
+    --container-name nginx-proxy --container-port 8000
 }
 
 ###  Main ###
