@@ -7,7 +7,7 @@ function configureAwsCli() {
     aws configure set aws_secret_access_key ${SECRET_KEY}
     aws configure set default.region ${AWS_DEFAULT_REGION}
     aws configure set default.output json
-    aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin 120545966579.dkr.ecr.us-east-1.amazonaws.com
+    aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_URI}
 }
 
 function buildImages() {
@@ -36,11 +36,6 @@ if [[ -z "${SECRET_KEY}" ]]; then
   echo "SECRET_KEY is empty"
   exit 1
 fi
-
-# export environment variables 
-# echo 'export TAG=$(echo ${CIRCLE_SHA1} | head -c 8)' >> $BASH_ENV
-# echo 'export DATE=$(date '+%Y-%m-%d')' >> $BASH_ENV
-# source $BASH_ENV
 
 configureAwsCli
 buildImages
