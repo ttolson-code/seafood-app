@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -ex
 
+function configureAwsCli() {
+
+    echo "Configuring AWS..."
+    aws configure set aws_access_key_id ${ACCESS_KEY}
+    aws configure set aws_secret_access_key ${SECRET_KEY}
+    aws configure set default.region ${AWS_DEFAULT_REGION}
+    aws configure set default.output json
+    aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_URI}
+}
+
 function createService() {
 
   ecs-cli compose --project-name ${SERVICE} --file docker-compose-aws.yml \
@@ -13,4 +23,5 @@ function createService() {
 
 ###  Main ###
 
+configureAwsCli
 createService
