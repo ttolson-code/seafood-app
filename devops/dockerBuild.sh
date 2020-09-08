@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 function configureAwsCli() {
-    ECR_LOGIN="$(aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_URI})"
+    ECR_LOGIN="$(aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin 120545966579.dkr.ecr.us-east-1.amazonaws.com)"
 
     echo "Configuring AWS..."
     aws configure set aws_access_key_id ${ACCESS_KEY}
     aws configure set aws_secret_access_key ${SECRET_KEY}
-    aws configure set default.region $AWS_DEFAULT_REGION
+    aws configure set default.region ${AWS_DEFAULT_REGION}
     aws configure set default.output json
     ${ECR_LOGIN}
 }
@@ -19,7 +19,7 @@ function buildImages() {
     # docker tag nginx-proxy:latest "${ECR_URI}/nginx-proxy:latest"
     # docker tag mongo-db:latest "${ECR_URI}/mongo-db:latest"
 
-    IMAGES=["mongo-db:latest"]
+    IMAGES=["express-server:latest"]
 
     for IMAGE in ${IMAGES}; do
         docker tag "${IMAGE}" "${ECR_URI}/${IMAGE}"
