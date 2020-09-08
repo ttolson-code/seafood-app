@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function configureAwsCli() {
-    ECR_LOGIN="$(aws ecr get-login --no-include-email)"
+    ECR_LOGIN="$(aws ecr get-login-password --no-include-email)"
 
     echo "Configuring AWS..."
     aws configure set aws_access_key_id ${ACCESS_KEY}
