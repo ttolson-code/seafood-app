@@ -19,7 +19,7 @@ function buildImages() {
     # docker tag nginx-proxy:latest "${ECR_URI}/nginx-proxy:latest"
     # docker tag mongo-db:latest "${ECR_URI}/mongo-db:latest"
 
-    IMAGES=("express-server" "seafood-app" "nginx-proxy")
+    IMAGES=("express-server" "seafood-app" "nginx-proxy" "mongo-db")
 
     for IMAGE in ${IMAGES[*]}; do
         docker tag "${IMAGE}" "${ECR_URI}/${IMAGE}"
