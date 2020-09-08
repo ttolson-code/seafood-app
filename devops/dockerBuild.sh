@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function configureAwsCli() {
-    ECR_LOGIN="$(aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_URI}"
+    ECR_LOGIN="$(aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${ECR_URI})"
 
     echo "Configuring AWS..."
     aws configure set aws_access_key_id ${ACCESS_KEY}
