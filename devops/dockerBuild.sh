@@ -21,7 +21,7 @@ function buildImages() {
 
     IMAGES=("express-server" "seafood-app" "nginx-proxy")
 
-    for IMAGE in ${IMAGES}; do
+    for IMAGE in ${IMAGES[*]}; do
         docker tag "${IMAGE}" "${ECR_URI}/${IMAGE}"
         docker push "${ECR_URI}/${IMAGE}"
     done
