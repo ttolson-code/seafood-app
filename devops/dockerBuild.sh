@@ -1,23 +1,18 @@
 #!/usr/bin/env bash
 
 function configureAwsCli() {
-    # ECR_LOGIN="$(aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin 120545966579.dkr.ecr.us-east-1.amazonaws.com)"
 
     echo "Configuring AWS..."
     aws configure set aws_access_key_id ${ACCESS_KEY}
     aws configure set aws_secret_access_key ${SECRET_KEY}
     aws configure set default.region ${AWS_DEFAULT_REGION}
     aws configure set default.output json
-    # ${ECR_LOGIN}
+    ECR_LOGIN="$(aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin 120545966579.dkr.ecr.us-east-1.amazonaws.com)"
+    ${ECR_LOGIN}
 }
 
 function buildImages() {
     docker-compose -f docker-compose-aws.yml build
-
-    # docker tag seafood-app:latest "${ECR_URI}/seafood-app:latest"
-    # docker tag express-server:latest "${ECR_UR}/express-server:latest"
-    # docker tag nginx-proxy:latest "${ECR_URI}/nginx-proxy:latest"
-    # docker tag mongo-db:latest "${ECR_URI}/mongo-db:latest"
 
     IMAGES=("express-server" "seafood-app" "nginx-proxy" "mongo-db")
 
@@ -51,4 +46,4 @@ fi
 # source $BASH_ENV
 
 configureAwsCli
-buildImages
+# buildImages
