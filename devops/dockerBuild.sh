@@ -7,8 +7,7 @@ function configureAwsCli() {
     aws configure set aws_secret_access_key ${SECRET_KEY}
     aws configure set default.region ${AWS_DEFAULT_REGION}
     aws configure set default.output json
-    ECR_LOGIN="$(aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin 120545966579.dkr.ecr.us-east-1.amazonaws.com)"
-    ${ECR_LOGIN}
+    aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin 120545966579.dkr.ecr.us-east-1.amazonaws.com
 }
 
 function buildImages() {
