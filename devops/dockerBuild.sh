@@ -19,8 +19,6 @@ function buildImages() {
         docker tag "${IMAGE}" "${ECR_URI}/${IMAGE}"
         docker push "${ECR_URI}/${IMAGE}"
     done
-
-    docker image ls
 }
 
 ### Main ###
@@ -45,4 +43,4 @@ fi
 # source $BASH_ENV
 
 configureAwsCli
-# buildImages
+buildImages
