@@ -1,7 +1,49 @@
 version: 2.1
-orbs:
-  node: circleci/node@3.0.0
+
+jobs:
+  build-images:
+    docker:
+      - image: amazonlinux:latest
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - run:
+          name: Install Dependencies
+          command: |
+            ./devops/installPackages.sh
+      - run:
+          name: Build Images
+          command: |
+            ./devops/dockerBuild.sh
+
+  deploy-app:
+    docker:
+      - image: amazonlinux:latest
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: |
+            ./devops/installPackages.sh
+      - run:
+          name: Update Service
+          command: |
+            ./devops/deployServices.sh
+
 workflows:
-  node-tests:
+  version: 2
+  build_deploy:
     jobs:
-      - node/test
+      - build-images:
+          filters:
+            branches:
+              only: master
+      - deploy-app:
+          requires:
+            - build-images
+          filters:
+            branches:
+              only: master

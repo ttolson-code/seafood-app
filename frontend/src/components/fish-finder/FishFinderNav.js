@@ -6,8 +6,8 @@ const FishFinderNav = () => {
 
   return (
     <div className="fishFinder-search-container">
-      <label className="fishFinder-search-box-label" htmlFor="Search-box">Find Species:</label>
-      <input className="fishFinder-search-box" type="text"/>
+      {/* <label className="fishFinder-search-box-label" htmlFor="Search-box">Find Species:</label>
+      <input className="fishFinder-search-box" type="text"/> */}
     
       <NavLink to="/fish-finder/profiles/all-profiles" className="fishFinder-search-filter-button">All</NavLink>
       <NavLink to="/fish-finder/profiles/wild-profiles" className="fishFinder-search-filter-button">Wild</NavLink>

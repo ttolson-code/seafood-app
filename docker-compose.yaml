@@ -28,6 +28,7 @@ services:
     environment:
       DB_URL: "mongodb://mongo-db:27017/"
       DB_NAME: "seafood-app"
+      HOST_ADDRESS: "localhost"
 
   # database
   mongo-db:

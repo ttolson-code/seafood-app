@@ -1,7 +1,7 @@
 const config = {
   express: {
     baseURL: 'http://',
-    host: 'localhost',
+    host: (process.env.HOST_ADDRESS),
     port: 5000,
   },
   mongoDb: {

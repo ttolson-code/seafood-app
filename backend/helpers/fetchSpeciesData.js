@@ -21,8 +21,10 @@ export default async function updateDatabase() {
   const db = getMongoConnection();
   
   // Drop species collection in order to reseed with fresh data.
-  console.log('Dropping species collection.')
-  db.collection('species').drop();
+  if (await db.collection('species').find().count() > 0) {
+    console.log('Dropping species collection.');
+    db.collection('species').drop();
+  }
 
   // Take speciesData array and insert individual species objects into mongoDB as documents.
   speciesData.map(species => {
