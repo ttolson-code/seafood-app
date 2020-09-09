@@ -17,9 +17,8 @@ function buildImages() {
     IMAGES=("express-server" "seafood-app" "nginx-proxy" "mongo-db")
 
     for IMAGE in ${IMAGES[*]}; do
-        aws ecr list-images --registry-id "${ECR_URI}/${IMAGE}"
-        # docker tag "${IMAGE}" "${ECR_URI}/${IMAGE}"
-        # docker push "${ECR_URI}/${IMAGE}"
+        docker tag "${IMAGE}" "${ECR_URI}/${IMAGE}"
+        docker push "${ECR_URI}/${IMAGE}"
     done
 }
 
