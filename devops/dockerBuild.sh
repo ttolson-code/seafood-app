@@ -15,10 +15,11 @@ function buildImages() {
     docker-compose -f docker-compose-aws.yaml build
 
     IMAGES=("express-server" "seafood-app" "nginx-proxy" "mongo-db")
+    TAG="latest"
 
     for IMAGE in ${IMAGES[*]}; do
-        docker tag "${IMAGE}" "${ECR_URI}/${IMAGE}"
-        docker push "${ECR_URI}/${IMAGE}"
+        docker tag "${IMAGE}" "${ECR_URI}/${IMAGE}:${TAG}"
+        docker push "${ECR_URI}/${IMAGE}:${TAG}"
     done
 }
 
