@@ -54,7 +54,7 @@ services:
     ports:
       - "5000:5000"
     environment:
-      DB_URL: "mongodb://mongo-db:27017/"
+      DB_URL: "mongodb://localhost:27017/"
       DB_NAME: "seafood-app"
       HOST_ADDRESS: "localhost"
     logging:
