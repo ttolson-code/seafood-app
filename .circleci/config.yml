@@ -40,10 +40,10 @@ workflows:
       - build-images:
           filters:
             branches:
-              only: feature/configure-for-aws
+              only: master
       - deploy-app:
           requires:
             - build-images
           filters:
             branches:
-              only: feature/configure-for-aws
+              only: master
