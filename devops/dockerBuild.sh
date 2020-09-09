@@ -11,6 +11,7 @@ function configureAwsCli() {
 }
 
 function buildImages() {
+    
     docker-compose -f docker-compose-aws.yml build
 
     IMAGES=("express-server" "seafood-app" "nginx-proxy" "mongo-db")

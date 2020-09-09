@@ -3,7 +3,7 @@ services:
   # nginx
   nginx-proxy:
     container_name: nginx-proxy
-    image: nginx-proxy
+    image: ${ECR_URI}/nginx-proxy
     build:
       context: ./nginx
       dockerfile: Dockerfile
@@ -13,7 +13,7 @@ services:
   # frontend
   seafood-app:
     container_name: seafood-app
-    image: seafood-app
+    image: ${ECR_URI}/seafood-app
     stdin_open: true
     build:
       context: ./frontend
@@ -24,7 +24,7 @@ services:
   # express
   express-server:
     container_name: express-server
-    image: express-server
+    image: ${ECR_URI}/express-server
     stdin_open: true
     build:
       context: ./backend
@@ -41,7 +41,7 @@ services:
   # database
   mongo-db:
     container_name: mongo-db
-    image: mongo-db
+    image: ${ECR_URI}/mongo-db
     build:
       context: ./mongo
       dockerfile: Dockerfile
