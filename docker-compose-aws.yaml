@@ -56,7 +56,7 @@ services:
     environment:
       DB_URL: "mongodb://localhost:27017/"
       DB_NAME: "seafood-app"
-      HOST_ADDRESS: "localhost"
+      HOST_ADDRESS: "api.seafood-app.com"
     logging:
       driver: awslogs
       options:
