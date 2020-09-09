@@ -9,6 +9,12 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8081:8081"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: /ecs/nginx-proxy/
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: seafood
 
   # frontend
   seafood-app:
@@ -20,6 +26,12 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: /ecs/seafood-app/
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: seafood
 
   # express
   express-server:
@@ -37,6 +49,12 @@ services:
       DB_URL: "mongodb://mongo-db:27017/"
       DB_NAME: "seafood-app"
       HOST_ADDRESS: "localhost"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: /ecs/express-server/
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: seafood
 
   # database
   mongo-db:
@@ -49,3 +67,9 @@ services:
       - "27017:27017"
     environment:
       MONGO_INITDB_DATABASE: "seafood-app"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: /ecs/mongo-db/
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: seafood

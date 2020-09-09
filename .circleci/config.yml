@@ -18,23 +18,20 @@ jobs:
           command: |
             ./devops/dockerBuild.sh
 
-  deploy-service:
+  deploy-app:
     docker:
       - image: amazonlinux:latest
     working_directory: ~/repo
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: false
       - run:
           name: Install Dependencies
           command: |
             ./devops/installPackages.sh
       - run:
-          name: Build Images
+          name: Update Service
           command: |
             ./devops/deployServices.sh
-
 
 workflows:
   version: 2
@@ -44,7 +41,7 @@ workflows:
           filters:
             branches:
               only: feature/configure-for-aws
-      - deploy-service:
+      - deploy-app:
           requires:
             - build-images
           filters:
