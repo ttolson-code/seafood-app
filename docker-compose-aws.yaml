@@ -9,6 +9,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8081:8081"
+    environment:
+      FRONT_END: "seafood-app"
+      BACK_END: "express-server"
+      FRONT_END_PORT: "3000"
+      BACK_END_PORT: "5000"
+      FRONT_END_DOMAIN: "seafood-app.com"
+      BACK_END_DOMAIN: "api.seafood-app.com"
+      NGINX_PORT: "8081"
     logging:
       driver: awslogs
       options:
