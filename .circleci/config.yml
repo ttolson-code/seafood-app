@@ -29,9 +29,13 @@ jobs:
           command: |
             ./devops/installPackages.sh
       - run:
-          name: Update Service
+          name: Deploy Frontend
           command: |
-            ./devops/deployServices.sh
+            ./devops/deployFrontend.sh
+      # - run:
+      #     name: Update Service
+      #     command: |
+      #       ./devops/deployServices.sh
 
 workflows:
   version: 2
@@ -46,4 +50,4 @@ workflows:
             - build-images
           filters:
             branches:
-              only: master
+              only: feature/deploy-s3
