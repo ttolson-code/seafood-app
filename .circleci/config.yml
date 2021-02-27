@@ -46,8 +46,8 @@ workflows:
             branches:
               only: master
       - deploy-app:
-          requires:
-            - build-images
+          # requires:
+          #   - build-images
           filters:
             branches:
               only: feature/deploy-s3
