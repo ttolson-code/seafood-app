@@ -5,6 +5,7 @@
 }
 
 .fishFinder-species-card-link {
+  width: 100%;
   color: #000;
   text-decoration: none;
 }
