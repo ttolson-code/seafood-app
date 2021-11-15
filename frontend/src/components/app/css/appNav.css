@@ -1,6 +1,6 @@
 .appNav-container {
-  text-align: right;
-  padding: 1rem;
+  padding: 1.5rem;
+  align-self: flex-end;
 }
 
 .appNav-link {

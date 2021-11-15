@@ -1,13 +1,14 @@
 .appHeader-container {
   background-color: #282c34;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .appHeader {
-  padding: 2rem;
+  padding: 1rem;
   color: white;
   font-size: calc(3rem + 1.5vmin);
   font-weight: 200;
   text-transform: capitalize;
+  align-self: flex-end;
 }

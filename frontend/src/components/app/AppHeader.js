@@ -1,4 +1,6 @@
 import React from 'react';
+import AppNav from '../app/AppNav';
+
 import './css/appHeader.css'
 
 const AppHeader = ({ headerText }) => {
@@ -10,6 +12,7 @@ const AppHeader = ({ headerText }) => {
   return (
     <div className="appHeader-container">
       <h1 className="appHeader">{headerTextFormat}</h1>
+      <AppNav/>
     </div>
   );
 }

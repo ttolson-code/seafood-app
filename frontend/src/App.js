@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import AppNav from './components/app/AppNav';
+// import AppNav from './components/app/AppNav';
 import LandingPage from './components/landing-page/LandingPage'
 import FishFinderIndex from './components/fish-finder/FishFinderIndex';
 import NewsIndex from './components/news/NewsIndex';
@@ -20,13 +20,11 @@ const App = () => {
         
         {/* Url matches fish-finder/* */}
         <Route path="/fish-finder">
-          <AppNav />
           <FishFinderIndex />
         </Route>
         
         {/* Url matches /news/* */}
         <Route path="/news">
-          <AppNav />
           <NewsIndex />
         </Route>
         
