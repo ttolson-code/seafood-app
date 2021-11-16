@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import AppHeader from '../app/AppHeader';
+// import AppNav from '../app/AppNav';
 import FishFinderNav from '../fish-finder/FishFinderNav';
 import FishFinderBanner from '../fish-finder/FishFinderBanner';
 import SpeciesList from './SpeciesList';
@@ -16,7 +17,8 @@ const FishFinderIndex = () => {
 
   async function fetchFishFinderAPI() {
     // The fetch url needs to be made an environment variable using process.env in the brackets didnt work
-    const res = await fetch('https://api.seafood-app.com/fish-finder/all-profiles');
+    // const res = await fetch('https://api.seafood-app.com/fish-finder/all-profiles');
+    const res = await fetch('http://localhost:5000/fish-finder/all-profiles');
     const resJson = await res.json();
     setSpeciesList(resJson);
     setLoading(true);

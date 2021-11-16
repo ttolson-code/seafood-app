@@ -16,7 +16,7 @@ async function fetchSpeciesData() {
   }
 }
 
-export default async function updateDatabase() {
+export default async function updateSpeciesTable() {
   const speciesData = await fetchSpeciesData();
   const db = getMongoConnection();
   
@@ -31,5 +31,5 @@ export default async function updateDatabase() {
     console.log("Reseeding species collection.");
     db.collection('species').insertOne(species);
   });
-  console.log('Cron Job complete.')
+  console.log('Update species table cron job complete.');
 }
