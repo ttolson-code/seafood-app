@@ -4,17 +4,19 @@ import cors from 'cors';
 import config from './config';
 
 // Imports api controllers.
-import { IndexController, FishFinderController } from './controller';
+import { IndexController, FishFinderController, NewsController } from './controller';
 
 // Imports mongoConnection function to establish database connection.
 import { mongoConnect } from './helpers/mongoConnection';
 
-// Imports updateDatabase() function to update database on app startup.
-import updateDatabase from './helpers/fetchSpeciesData';
+// Imports updateSpeciesTable() function to update database on app startup.
+import updateSpeciesTable from './helpers/fetchSpeciesData';
+import updateNewsTable from './helpers/fetchNewsData';
 
 // Import a module for side effects only.
 // This runs the module's global code, but doesn't actually import any values.
 import './helpers/cronJobs';
+import './helpers/fetchNewsData';
 
 // Assign variables from config.js.
 const { express: { baseURL, host, port } } = config;
@@ -28,11 +30,13 @@ app.use(cors());
 // Controllers(APIs).
 app.use('/', IndexController);
 app.use('/fish-finder', FishFinderController);
+app.use('/news', NewsController);
 
 // Connect to MongoDb and then start express server.
 mongoConnect()
   .then(() => console.log('Connected to MongoDB.'))
-  .then(() => updateDatabase())
+  .then(() => updateSpeciesTable())
+  .then(() => updateNewsTable())
   .then(() => {
     app.listen(port, () => {
       console.log(`Express server is running on port ${baseURL}${host}\/${port}.`);

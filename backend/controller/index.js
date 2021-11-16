@@ -1,4 +1,5 @@
 import FishFinderController from './FishFinder.controller';
+import NewsController from './News.controller';
 import IndexController from './Index.controller'
 
-export { FishFinderController, IndexController };
+export { FishFinderController, NewsController, IndexController };

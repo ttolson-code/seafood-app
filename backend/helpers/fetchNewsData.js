@@ -65,7 +65,26 @@ async function fetchNewsData() {
       newsObjectArray.push(newsItemObject);
     });
   }
-  console.log(newsObjectArray);
+  return newsObjectArray;
 }
 
-fetchNewsData();
+export default async function updateNewsTable() {
+  const newsData = await fetchNewsData();
+  const db = getMongoConnection();
+  
+  // Drop species collection in order to reseed with fresh data.
+  if (await db.collection('news').find().count() > 0) {
+    console.log('Dropping news collection.');
+    db.collection('news').drop();
+  }
+
+  // Take speciesData array and insert individual species objects into mongoDB as documents.
+  newsData.map(newsItem => {
+    console.log("Reseeding news collection.");
+    db.collection('news').insertOne(newsItem);
+  });
+  console.log('Update news table cron job complete.');
+}
+
+
+// https://www.fisheries.noaa.gov/news-and-announcements/news?title=&field_news_category_value[feature_story]=feature_story&sort_by=created&page=0
