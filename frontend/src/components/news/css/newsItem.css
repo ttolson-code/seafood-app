@@ -1,0 +1,35 @@
+.news-item {
+  display: flex;
+  background-color: #fff;
+  width: 100%;
+  border-radius: 3px;
+  padding: 0rem 0.5rem 1rem;
+  margin: 1rem 0;
+}
+
+.news-item-content {
+  padding: 1rem;
+}
+
+.news-item-heading {
+  padding-bottom: 0.5rem;
+}
+
+.news-item-link {
+  text-decoration: none;
+  color: #000;
+  color: #008a99;
+}
+
+.news-item-link:hover {
+  color: #000;
+}
+
+.news-item-caption {
+  padding-bottom: 0.5rem;
+}
+
+.news-item-date {
+  font-style: italic;
+  color: #555;
+}

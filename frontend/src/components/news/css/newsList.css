@@ -1,0 +1,11 @@
+.news-items-container {
+  width: 75%;
+  max-width: 1400px;
+  margin: auto;
+  padding: 2rem 0rem;
+}
+
+.news-items-list {
+  display: flex;
+  flex-direction: column;
+}
