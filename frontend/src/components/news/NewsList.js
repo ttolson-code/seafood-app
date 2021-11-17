@@ -18,6 +18,7 @@ export default function NewsList({ newsData }) {
           caption={newsItem.caption}
           date={newsItem.date}
           url={newsItem.url}
+          imageURL={newsItem.imageUrl}
         />
       );
     });

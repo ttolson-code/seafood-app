@@ -13,6 +13,7 @@ const SpeciesCard = (props) => {
         <p className="news-item-caption">{props.caption}</p>
         <p className="news-item-date">{props.date}</p>
       </div>
+      <img className="news-item-image" src={props.imageURL}></img>
     </li>
   )
 }
