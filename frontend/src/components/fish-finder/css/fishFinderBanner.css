@@ -1,5 +1,6 @@
 .fishFinder-species-banner {
-  background: linear-gradient(to top, hsl(186, 100%, 30%), hsl(186, 60%, 60%));
+  /* background: linear-gradient(to top, hsl(186, 100%, 30%), hsl(186, 60%, 60%)); */
+  background-color: #008a99;
   text-align: center;
 }
 

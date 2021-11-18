@@ -39,8 +39,8 @@ const FishFinderIndex = () => {
   return (
     <main className="fishFinder-container">
       <AppHeader headerText={route.url}/>
-      <FishFinderNav />
       <FishFinderBanner />
+      <FishFinderNav />
       <Switch>
         {/* Use Regex to constrain route. */}
         <Route exact path="/fish-finder/profiles/:profileId(all-profiles|wild-profiles|farmed-profiles)">
