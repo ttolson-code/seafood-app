@@ -1,8 +1,8 @@
 import fetch from 'node-fetch';
 import cheerio from 'cheerio';
-import { MongoClient } from 'mongodb';
-import { getMongoConnection } from './mongoConnection';
-import { xml } from 'cheerio/lib/static';
+import MongoClient from 'mongodb';
+import { getMongoConnection } from './mongoConnection.js';
+// import { xml } from 'cheerio/lib/static';
 
 async function fetchNewsPageCount() {
   console.log("Fetching news page count from fishwatch.gov.")
@@ -50,6 +50,7 @@ async function fetchNewsData() {
       const newsItemCaption = $(this).find('.teaser__summary').text().trim();
       const newsItemURL = $(this).find('.teaser__title-link').attr('href');
       const newsItemDate = $(this).find('.teaser__meta-date').text();
+      const newsItemFormattedDate = new Date(newsItemDate);
       const newsItemImageURL = $(this).find('.teaser__image-link').find('img').attr('src');
       const newsItemBaseURL = 'https://www.fisheries.noaa.gov'
     
@@ -57,7 +58,7 @@ async function fetchNewsData() {
       const newsItemObject = {
         "title": newsItemTitle,
         "caption": newsItemCaption, 
-        "date": newsItemDate,
+        "date": newsItemFormattedDate,
         "url": newsItemBaseURL + newsItemURL,
         "imageUrl": newsItemImageURL
       }

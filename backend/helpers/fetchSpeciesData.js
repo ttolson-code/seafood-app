@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
-import { MongoClient } from 'mongodb';
-import { getMongoConnection } from './mongoConnection';
+import MongoClient from 'mongodb';
+import { getMongoConnection } from './mongoConnection.js';
 
 // Use node-fetch to fetch data from FishWatch.gov api.
 async function fetchSpeciesData() {

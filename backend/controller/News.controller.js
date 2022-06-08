@@ -1,6 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch';
-import { getMongoConnection } from '../helpers/mongoConnection';
+import { getMongoConnection } from '../helpers/mongoConnection.js';
 
 const NewsController = express.Router();
 
@@ -9,7 +9,7 @@ NewsController.get('/all', async (req, res) => {
 
   const db = getMongoConnection();
 
-  db.collection('news').find().sort({"date": 1}).toArray((err, items) => {
+  db.collection('news').find().sort({"date": -1}).toArray((err, items) => {
     // res.end(JSON.stringify(items));
     res.end(JSON.stringify(items, null, 4));
   })

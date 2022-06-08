@@ -1,22 +1,20 @@
+import 'dotenv/config'
 import express from 'express';
-import esm from 'esm';
 import cors from 'cors';
-import config from './config';
+import config from './config.js';
 
 // Imports api controllers.
-import { IndexController, FishFinderController, NewsController } from './controller';
+import { IndexController, FishFinderController, NewsController } from './controller/index.js';
 
 // Imports mongoConnection function to establish database connection.
-import { mongoConnect } from './helpers/mongoConnection';
+import { mongoConnect } from './helpers/mongoConnection.js';
 
-// Imports updateSpeciesTable() function to update database on app startup.
-import updateSpeciesTable from './helpers/fetchSpeciesData';
-import updateNewsTable from './helpers/fetchNewsData';
+// Imports updateSpeciesTable() and updateNewsTable() function to reseed database on app startup.
+import updateSpeciesTable from './helpers/fetchSpeciesData.js';
+import updateNewsTable from './helpers/fetchNewsData.js';
 
-// Import a module for side effects only.
-// This runs the module's global code, but doesn't actually import any values.
-import './helpers/cronJobs';
-import './helpers/fetchNewsData';
+// Import a module for side effects only. This runs the module's global code, but doesn't actually import any values.
+import './helpers/cronJobs.js';
 
 // Assign variables from config.js.
 const { express: { baseURL, host, port } } = config;
@@ -27,7 +25,7 @@ const app = express();
 // Use cors.
 app.use(cors());
 
-// Controllers(APIs).
+// Controllers (APIs).
 app.use('/', IndexController);
 app.use('/fish-finder', FishFinderController);
 app.use('/news', NewsController);
@@ -44,7 +42,7 @@ mongoConnect()
   })
   .catch((err) => {
     console.error(err);
-    // Always hard exit on a database connection error.
+    // Hard exit on a database connection error.
     process.exit(1);
   });
 

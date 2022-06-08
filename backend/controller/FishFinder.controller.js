@@ -1,6 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch';
-import { getMongoConnection } from '../helpers/mongoConnection';
+import { getMongoConnection } from '../helpers/mongoConnection.js';
 
 const FishFinderController = express.Router();
 
