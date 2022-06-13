@@ -3,10 +3,13 @@ import { useParams } from 'react-router-dom';
 import SpeciesCard from './SpeciesCard';
 import './css/speciesList.css'
 
-
 export default function SpeciesList({ speciesList }) {
   const params = useParams();
-  const profileId = params.profileId;
+  
+  // TODO: Investigate a better solution to below line. 
+  // useParams() returns object with key '*' which is odd to target.
+  // Due to react-router 6 routes in parent component.
+  const profileId = params["*"];
 
   const filterWild = speciesList.filter(species => species["Harvest Type"] === "Wild")
   const filterFarmed = speciesList.filter(species => species["Harvest Type"] === "Farmed")
@@ -14,10 +17,10 @@ export default function SpeciesList({ speciesList }) {
   let filteredSpeciesList;
   
   switch(profileId) {
-    case 'wild-profiles':
+    case 'wild':
       filteredSpeciesList = filterWild;
       break;
-    case 'farmed-profiles':
+    case 'farmed':
       filteredSpeciesList = filterFarmed;
       break;
     default: 
@@ -37,7 +40,6 @@ export default function SpeciesList({ speciesList }) {
         />
       );
     });
-  
   }
         
   return (
