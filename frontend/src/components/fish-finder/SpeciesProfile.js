@@ -38,23 +38,23 @@ const SpeciesProfile = ({ speciesList }) => {
         <table>
           <tr>
             <th>Population:</th>
-            <td>{speciesInfo["Population"]}</td>
+            <td>{!speciesInfo["Population"] ? "N/A" : speciesInfo["Population"]}</td>
           </tr>
           <tr>
             <th>Source:</th>
-            <td>{speciesInfo["Source"].replace(/(<([^>]+)>)/ig, '')}</td>
+            <td>{!speciesInfo["Source"] ? "N/A" : speciesInfo["Source"].replace(/(<([^>]+)>)/ig, '')}</td>
           </tr>
           <tr>
             <th>Habitat Impacts:</th>
-            <td>{speciesInfo["Habitat Impacts"]}</td>
+            <td>{!speciesInfo["Habitat Impacts"] ? "N/A" : speciesInfo["Habitat Impacts"]}</td>
           </tr>
           <tr>
             <th>Fishing Rate:</th>
-            <td>{speciesInfo["Fishing Rate"]}</td>
+            <td>{!speciesInfo["Fishing Rate"] ? "N/A" : speciesInfo["Fishing Rate"]}</td>
           </tr>
           <tr>
             <th>By Catch:</th>
-            <td>{speciesInfo["Bycatch"]}</td>
+            <td>{!speciesInfo["ByCatch"] ? "N/A" : speciesInfo["Bycatch"]}</td>
           </tr>
         </table>
 
@@ -63,7 +63,7 @@ const SpeciesProfile = ({ speciesList }) => {
         <table>
           <tr>
             <th>Availability:</th>
-            <td>{speciesInfo["Availability"].replace(/(<([^>]+)>)/ig, '')}</td>
+            <td>{!speciesInfo["Availability"] ? "N/A" : speciesInfo["Availability"].replace(/(<([^>]+)>)/ig, '')}</td>
           </tr>
           <tr>
             <th>Color:</th>
