@@ -14,7 +14,7 @@ const FishFinderBanner = () => {
  
   return (
     <div className="fishFinder-species-banner">
-      <h2 className="fishFinder-species-banner-content">{bannerText}</h2>
+      <h2 className="fishFinder-species-banner-content">{bannerText} Profiles</h2>
     </div>
   )
 }
