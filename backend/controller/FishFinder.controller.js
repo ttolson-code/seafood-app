@@ -4,8 +4,8 @@ import { getMongoConnection } from '../helpers/mongoConnection.js';
 
 const FishFinderController = express.Router();
 
-FishFinderController.get('/all-profiles', async (req, res) => {
-  console.log('/all-profiles endpoint reached.');
+FishFinderController.get('/profiles/all', async (req, res) => {
+  console.log('/profiles/all endpoint reached.');
 
   const db = getMongoConnection();
 
@@ -16,8 +16,8 @@ FishFinderController.get('/all-profiles', async (req, res) => {
 }); 
 
 
-FishFinderController.get('/wild-profiles', async (req, res) => {
-  console.log('/wild-profiles endpoint reached.');
+FishFinderController.get('/profiles/wild', async (req, res) => {
+  console.log('/profiles/wild endpoint reached.');
 
   const db = getMongoConnection();
 
@@ -28,8 +28,8 @@ FishFinderController.get('/wild-profiles', async (req, res) => {
 });
 
 
-FishFinderController.get('/farmed-profiles', async (req, res) => {
-  console.log('/farmed-profiles endpoint reached.');
+FishFinderController.get('/profiles/farmed', async (req, res) => {
+  console.log('/profiles/farmed endpoint reached.');
   
   const db = getMongoConnection();
 
