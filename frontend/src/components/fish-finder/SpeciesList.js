@@ -4,31 +4,34 @@ import SpeciesCard from './SpeciesCard';
 import './css/speciesList.css'
 
 export default function SpeciesList({ speciesList }) {
-  const params = useParams();
+  // const params = useParams();
+  // console.log(params)
   
   // TODO: Investigate a better solution to below line. 
   // useParams() returns object with key '*' which is odd to target.
   // Due to react-router 6 routes in parent component.
-  const profileId = params["*"];
+  // const profileId = params["*"];
 
-  const filterWild = speciesList.filter(species => species["Harvest Type"] === "Wild")
-  const filterFarmed = speciesList.filter(species => species["Harvest Type"] === "Farmed")
+  // console.log(profileId)
 
-  let filteredSpeciesList;
+  // const filterWild = speciesList.filter(species => species["Harvest Type"] === "Wild")
+  // const filterFarmed = speciesList.filter(species => species["Harvest Type"] === "Farmed")
+
+  // let filteredSpeciesList;
   
-  switch(profileId) {
-    case 'wild':
-      filteredSpeciesList = filterWild;
-      break;
-    case 'farmed':
-      filteredSpeciesList = filterFarmed;
-      break;
-    default: 
-      filteredSpeciesList = speciesList;
-  }
+  // switch(profileId) {
+  //   case 'wild':
+  //     filteredSpeciesList = filterWild;
+  //     break;
+  //   case 'farmed':
+  //     filteredSpeciesList = filterFarmed;
+  //     break;
+  //   default: 
+  //     filteredSpeciesList = speciesList;
+  // }
 
-  function renderSpeciesCard(filteredSpeciesList)  {
-    return filteredSpeciesList.map((species) => {
+  function renderSpeciesCards(speciesList)  {
+    return speciesList.map((species) => {
       return (
         <SpeciesCard
           key={species._id}
@@ -45,7 +48,7 @@ export default function SpeciesList({ speciesList }) {
   return (
     <div className="fishFinder-species-container">
       <ul className="fishFinder-species-grid">
-        {renderSpeciesCard(filteredSpeciesList)}
+        {renderSpeciesCards(speciesList)}
       </ul>
     </div>
   );
