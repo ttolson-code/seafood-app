@@ -1,31 +1,24 @@
 # Seafood App
 
 ## Backend
-- node.js
-- express
-- mongoDB 
+- Node.js
+- Express.js
+- MongoDB 
 
 ## Frontend 
 - React
-
 
 ## Features
 
 **Fish Finder**
 
-Frontend 
-
 - Display all available species, can be filterd by "all", "wild", "farmed".  
-- Search bar that allows dynamically searching across all species and displaying real-time dropdown list of results. 
-- Dynamic individual page loading of each species displaying species data. 
-
-Backend
+- Search bar that allows searching across all species and displaying real-time dropdown list of results. 
+- Individual pages of each species displaying species data. 
 
 **News**
 
-Frontend
-
-Backend
+TODO: Add 'New' section features.
 
 ## Data
 
@@ -43,13 +36,13 @@ Docker cannot traverse backwards so it must be in the root directory with everyt
   - Install docker
   - Install docker-compose
 
-To build the containers run the following command from the root directory which contains the file ```docker-compose.yaml```.
+To build the containers run the following command from the root directory which contains the file `docker-compose.yaml`.
 
 ```console
 $ docker-compose -f docker-compose.yaml build
  ```
 
-To run the containers for local development run the following command from the root directory which contains the file ```docker-compose.yaml```
+To run the containers for local development run the following command from the root directory which contains the file `docker-compose.yaml`
 
 ```console
 $ docker-compose -f docker-compose.yaml up
@@ -57,9 +50,9 @@ $ docker-compose -f docker-compose.yaml up
 
 ## Devops
 
-The ```devops``` directory contains files for automated deployment and development.
+The `devops` directory contains files for automated deployment and development.
 
-localExport.sh contains a ```$DB_URL``` and a ```$DB_NAME``` variable. If you do not wish to use docker-compose you can run the following command ```source ./devops/localExport.sh```. This will export the variables to your bash env where they will be consumed by ```backend/config.js```.
+localExport.sh contains a `$DB_URL` and a `$DB_NAME` variable. If you do not wish to use docker-compose you can run the following command `source ./devops/localExport.sh`. This will export the variables to your bash env where they will be consumed by `backend/config.js`.
 
 ```console
   mongoDb: {
