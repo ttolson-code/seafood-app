@@ -1,8 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import AppHeader from '../app/AppHeader';
-// import AppNav from '../app/AppNav';
 import FishFinderNav from '../fish-finder/FishFinderNav';
 import FishFinderBanner from '../fish-finder/FishFinderBanner';
 import SpeciesList from './SpeciesList';
@@ -10,23 +9,29 @@ import SpeciesProfile from './SpeciesProfile';
 import './css/fishFinderIndex.css'
 
 const FishFinderIndex = () => {
-  const route = useRouteMatch();
-
+  const [filter, setFilter] = useState('all');
   const [speciesList, setSpeciesList] = useState({});
   const [loading, setLoading] = useState(false);
 
-  async function fetchFishFinderAPI() {
+  async function fetchFishFinderAPI(filter) {
     // The fetch url needs to be made an environment variable using process.env in the brackets didnt work
     // const res = await fetch('https://api.seafood-app.com/fish-finder/all-profiles');
-    const res = await fetch('http://localhost:5000/fish-finder/all-profiles');
+    const res = await fetch(`http://localhost:3001/fish-finder/profiles/${filter}`);
     const resJson = await res.json();
     setSpeciesList(resJson);
     setLoading(true);
   }
 
   useEffect(() => {
-    fetchFishFinderAPI();
-  }, []);
+    if (filter) {
+      fetchFishFinderAPI(filter);
+    }
+  }, [filter]);
+  
+  // Helper function to handle species profile filter change (all, wild, farmed).
+  const handleFilterChange = (selectedFilter) => {
+    setFilter(selectedFilter);
+  }
 
   if (!loading) {
     return (
@@ -38,20 +43,15 @@ const FishFinderIndex = () => {
 
   return (
     <main className="fishFinder-container">
-      <AppHeader headerText={route.url}/>
+      <AppHeader />
       <FishFinderBanner />
-      <FishFinderNav />
-      <Switch>
-        {/* Use Regex to constrain route. */}
-        <Route exact path="/fish-finder/profiles/:profileId(all-profiles|wild-profiles|farmed-profiles)">
-          <SpeciesList speciesList={speciesList} />
-        </Route> 
-        
-        <Route exact path="/fish-finder/profiles/:speciesId">
-          <SpeciesProfile speciesList={speciesList}/>
-        </Route> 
-
-      </Switch>
+      <FishFinderNav handleFilterChange={handleFilterChange} s/>
+      <Routes>
+        <Route path="all" element={<SpeciesList speciesList={speciesList} />} />
+        <Route path="wild" element={<SpeciesList speciesList={speciesList} />} />
+        <Route path="farmed" element={<SpeciesList speciesList={speciesList} />} />
+        <Route path=":speciesId" element={<SpeciesProfile speciesList={speciesList}/>} />
+      </Routes>
     </main>
   );
 };
