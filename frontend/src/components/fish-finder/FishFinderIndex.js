@@ -50,7 +50,7 @@ const FishFinderIndex = () => {
         <Route path="all" element={<SpeciesList speciesList={speciesList} />} />
         <Route path="wild" element={<SpeciesList speciesList={speciesList} />} />
         <Route path="farmed" element={<SpeciesList speciesList={speciesList} />} />
-        <Route path=":speciesId" element={<SpeciesProfile speciesList={speciesList}/>} />
+        <Route path=":speciesId" element={<SpeciesProfile />} />
       </Routes>
     </main>
   );
