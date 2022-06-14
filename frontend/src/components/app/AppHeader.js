@@ -1,17 +1,11 @@
 import React from 'react';
 import AppNav from '../app/AppNav';
-
 import './css/appHeader.css'
 
-const AppHeader = ({ headerText }) => {
-  // Remove "/" from url.
-  // Replace any "-" (hypens) with a space.
-  // Uppercase first letter of words done via CSS.
-  const headerTextFormat = headerText.substr(1).replace(/-/g, ' '); 
-
+const AppHeader = () => {
   return (
     <div className="appHeader-container">
-      <h1 className="appHeader">{headerTextFormat}</h1>
+      <h1 className="appHeader">Seafood App</h1>
       <AppNav/>
     </div>
   );
