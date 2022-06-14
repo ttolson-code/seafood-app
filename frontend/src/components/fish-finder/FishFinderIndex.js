@@ -6,19 +6,19 @@ import FishFinderNav from '../fish-finder/FishFinderNav';
 import FishFinderBanner from '../fish-finder/FishFinderBanner';
 import SpeciesList from './SpeciesList';
 import SpeciesProfile from './SpeciesProfile';
+import species from '../../apis/species';
 import './css/fishFinderIndex.css'
 
 const FishFinderIndex = () => {
   const [filter, setFilter] = useState('all');
   const [speciesList, setSpeciesList] = useState({});
   const [loading, setLoading] = useState(false);
-
+  
   async function fetchFishFinderAPI(filter) {
-    // The fetch url needs to be made an environment variable using process.env in the brackets didnt work
     // const res = await fetch('https://api.seafood-app.com/fish-finder/all-profiles');
-    const res = await fetch(`http://localhost:3001/fish-finder/profiles/${filter}`);
-    const resJson = await res.json();
-    setSpeciesList(resJson);
+    const response = await species.get(`/fish-finder/profiles/${filter}`);
+    
+    setSpeciesList(response.data);
     setLoading(true);
   }
 
