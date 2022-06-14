@@ -1,36 +1,9 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import SpeciesCard from './SpeciesCard';
 import './css/speciesList.css'
 
-export default function SpeciesList({ speciesList }) {
-  // const params = useParams();
-  // console.log(params)
-  
-  // TODO: Investigate a better solution to below line. 
-  // useParams() returns object with key '*' which is odd to target.
-  // Due to react-router 6 routes in parent component.
-  // const profileId = params["*"];
-
-  // console.log(profileId)
-
-  // const filterWild = speciesList.filter(species => species["Harvest Type"] === "Wild")
-  // const filterFarmed = speciesList.filter(species => species["Harvest Type"] === "Farmed")
-
-  // let filteredSpeciesList;
-  
-  // switch(profileId) {
-  //   case 'wild':
-  //     filteredSpeciesList = filterWild;
-  //     break;
-  //   case 'farmed':
-  //     filteredSpeciesList = filterFarmed;
-  //     break;
-  //   default: 
-  //     filteredSpeciesList = speciesList;
-  // }
-
-  function renderSpeciesCards(speciesList)  {
+const SpeciesList = ({ speciesList }) =>  {
+  const renderSpeciesCards = (speciesList) => {
     return speciesList.map((species) => {
       return (
         <SpeciesCard
@@ -53,3 +26,5 @@ export default function SpeciesList({ speciesList }) {
     </div>
   );
 }
+
+export default SpeciesList;
