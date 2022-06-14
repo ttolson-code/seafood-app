@@ -1,11 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './css/newsItem.css'
 
-const SpeciesCard = (props) => {
-  // Uses "path" data from fishwatch.gov. Example: /profiles/atlantic-salmon
-  const path = props.path;
-
+const NewsItem = (props) => {
   return (
     <li className="news-item">
       <div className="news-item-content">
@@ -18,4 +14,4 @@ const SpeciesCard = (props) => {
   )
 }
 
-export default SpeciesCard;
+export default NewsItem;
