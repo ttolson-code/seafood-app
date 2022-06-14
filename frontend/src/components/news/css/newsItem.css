@@ -1,5 +1,6 @@
 .news-item {
   display: flex;
+  flex-direction: column;
   background-color: #fff;
   width: 100%;
   border-radius: 3px;
@@ -7,12 +8,19 @@
   margin: 1rem 0;
 }
 
+@media screen and (min-width: 900px) { 
+  .news-item {
+    flex-direction: row;
+  }
+}
+
 .news-item-content {
-  padding: 1rem;
+  padding: 0.8rem;
 }
 
 .news-item-heading {
   padding-bottom: 0.5rem;
+  font-size: 1.2rem;
 }
 
 .news-item-link {
