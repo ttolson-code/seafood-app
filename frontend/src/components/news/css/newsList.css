@@ -5,9 +5,9 @@
 }
 
 @media screen and (min-width: 900px) { 
-  .news-item-container {
-    width: 75%;
-    max-width: 1400px;
+  .news-items-container {
+    width: 80%;
+    max-width: 1200px;
   }
 }
 
