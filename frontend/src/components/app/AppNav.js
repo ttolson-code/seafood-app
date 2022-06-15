@@ -1,15 +1,21 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import './css/appNav.css'
 
 const AppNav = () => {
-  // TODO: Make nav link active when on that page.
+  // Extract pathname from location.
+  const { pathname } = useLocation();
+  // Split path into array.
+  const pathnameArray = pathname.split('/');
+  // See if array includes 'fish-finder' aka see if current path includes 'fish-finder'.
+  const isActive = pathnameArray.includes('fish-finder');
+  
   return(
     <nav className="appNav-container">
       <NavLink to="/" className="appNav-link">Home</NavLink>
       <NavLink 
-        to="/fish-finder/profiles/all" 
-        className="appNav-link" 
+        to="/fish-finder/profiles/all"
+        className={`appNav-link ${isActive ? 'active' : ''}`}
       >
         Fish Finder
       </NavLink>
