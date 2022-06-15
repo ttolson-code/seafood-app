@@ -8,13 +8,12 @@ import './css/fishFinderBanner.css'
 
 const FishFinderBanner = () => {
   // Grab current url pathname.
-  const location = useLocation();
-  const path = location.pathname;
+  const { pathname } = useLocation();
   
   // Delimit pathname by last forward slash ("/") and grab/pop() last item.
   // Replace any "-" (hypens) with a space.
   // Uppercasing first letter of words done via CSS.
-  const bannerText = path.substring(path.lastIndexOf('/') + 1).replace(/-/g, ' ');
+  const bannerText = pathname.substring(pathname.lastIndexOf('/') + 1).replace(/-/g, ' ');
  
   return (
     <div className="fishFinder-species-banner">
