@@ -10,9 +10,9 @@ const FishFinderNav = ({ handleFilterChange }) => {
         <input className="fishFinder-search-box" type="text"/>
       </div>
       <div className="fishFinder-filter-container">
-        <NavLink to="/fish-finder/profiles/all" className="fishFinder-search-filter-button" onClick={() => handleFilterChange('all')}>All</NavLink>
-        <NavLink to="/fish-finder/profiles/wild" className="fishFinder-search-filter-button" onClick={() => handleFilterChange('wild')}>Wild</NavLink>
-        <NavLink to="/fish-finder/profiles/farmed" className="fishFinder-search-filter-button" onClick={() => handleFilterChange('farmed')}>Farmed</NavLink>
+        <NavLink to="/fish-finder/profiles/all" className="fishFinder-filter-button" onClick={() => handleFilterChange('all')}>All</NavLink>
+        <NavLink to="/fish-finder/profiles/wild" className="fishFinder-filter-button" onClick={() => handleFilterChange('wild')}>Wild</NavLink>
+        <NavLink to="/fish-finder/profiles/farmed" className="fishFinder-filter-button" onClick={() => handleFilterChange('farmed')}>Farmed</NavLink>
       </div>
     </div>  
   );

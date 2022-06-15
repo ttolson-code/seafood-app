@@ -54,7 +54,7 @@
   padding: 0.6rem;
 }
 
-.fishFinder-search-filter-button {
+.fishFinder-filter-button {
   font-size: 1.2rem;
   font-weight: 700;
   color: #ffffff80;
@@ -69,7 +69,13 @@
   margin-right: 0.8rem;
 }
 
-.fishFinder-search-filter-button:hover {
+.fishFinder-filter-button:hover {
+  border: 1px solid #fff;
+  background: #fff;
+  color: #0093d0;
+}
+
+.fishFinder-filter-button.active {
   border: 1px solid #fff;
   background: #fff;
   color: #0093d0;
