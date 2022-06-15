@@ -1,15 +1,9 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import NewsItem from './NewsItem';
 import './css/newsList.css'
 
-
-export default function NewsList({ newsData }) {
-  const params = useParams();
-  const profileId = params.profileId;
-
-
-  function renderNewsItems(newsData)  {
+const NewsList = ({ newsData }) => {
+  const renderNewsItems = (newsData) => {
     return newsData.map((newsItem) => {
       return (
         <NewsItem
@@ -32,3 +26,5 @@ export default function NewsList({ newsData }) {
     </div>
   );
 }
+
+export default NewsList;
