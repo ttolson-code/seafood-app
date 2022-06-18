@@ -1,11 +1,11 @@
 import express from 'express';
 
-const IndexController = express.Router();
+const router = express.Router();
 
-IndexController.get('/', (req, res) => {
+router.get('/', (req, res) => {
   res.status(200).json({
     status: 'Express server running successfully.',
   });
 });
 
-export default IndexController;
+export default router;

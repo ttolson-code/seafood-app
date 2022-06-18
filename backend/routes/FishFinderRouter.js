@@ -1,10 +1,10 @@
 import express from 'express';
-import fetch from 'node-fetch';
 import { getMongoConnection } from '../helpers/mongoConnection.js';
 
-const FishFinderController = express.Router();
+const router = express.Router();
 
-FishFinderController.get('/profiles/all', async (req, res) => {
+// GET 'all' species.
+router.get('/profiles/all', async (req, res) => {
   console.log('/profiles/all endpoint reached.');
 
   const db = await getMongoConnection();
@@ -14,8 +14,8 @@ FishFinderController.get('/profiles/all', async (req, res) => {
   })
 }); 
 
-
-FishFinderController.get('/profiles/wild', async (req, res) => {
+// GET 'wild' species.
+router.get('/profiles/wild', async (req, res) => {
   console.log('/profiles/wild endpoint reached.');
 
   const db = await getMongoConnection();
@@ -25,8 +25,8 @@ FishFinderController.get('/profiles/wild', async (req, res) => {
   })
 });
 
-
-FishFinderController.get('/profiles/farmed', async (req, res) => {
+// GET 'farmed' species.
+router.get('/profiles/farmed', async (req, res) => {
   console.log('/profiles/farmed endpoint reached.');
   
   const db = await getMongoConnection();
@@ -36,8 +36,8 @@ FishFinderController.get('/profiles/farmed', async (req, res) => {
   })
 });
 
-
-FishFinderController.get('/species/:id', async (req, res) => {
+// GET 'single' species.
+router.get('/species/:id', async (req, res) => {
   console.log(`/species/${req.params.id} endpoint reached.`)
 
   const db = await getMongoConnection();
@@ -48,4 +48,4 @@ FishFinderController.get('/species/:id', async (req, res) => {
 });
 
 
-export default FishFinderController;
+export default router;

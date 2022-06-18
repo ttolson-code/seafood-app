@@ -4,7 +4,7 @@ import cors from 'cors';
 import config from './config.js';
 
 // Imports api controllers.
-import { IndexController, FishFinderController, NewsController } from './controller/index.js';
+import { RootRouter, FishFinderRouter, NewsRouter } from './routes/index.js';
 
 // Imports mongoConnection function to establish database connection.
 import { mongoConnect } from './helpers/mongoConnection.js';
@@ -26,9 +26,9 @@ const app = express();
 app.use(cors());
 
 // Controllers (APIs).
-app.use('/', IndexController);
-app.use('/fish-finder', FishFinderController);
-app.use('/news', NewsController);
+app.use('/', RootRouter);
+app.use('/fish-finder', FishFinderRouter);
+app.use('/news', NewsRouter);
 
 // Connect to MongoDb and then start express server.
 mongoConnect()
