@@ -1,5 +1,4 @@
 import { MongoClient } from 'mongodb';
-// import connect from 'mongodb';
 import config from '../config.js';
 
 // https://stackoverflow.com/questions/10656574/how-do-i-manage-mongodb-connections-in-a-node-js-web-application
