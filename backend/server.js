@@ -7,14 +7,14 @@ import config from './config.js';
 import { RootRouter, FishFinderRouter, NewsRouter } from './routes/index.js';
 
 // Imports mongoConnection function to establish database connection.
-import { mongoConnect } from './helpers/mongoConnection.js';
+import { mongoConnect } from './utils/mongoConnection.js';
 
 // Imports updateSpeciesTable() and updateNewsTable() function to reseed database on app startup.
-import updateSpeciesTable from './helpers/fetchSpeciesData.js';
-import updateNewsTable from './helpers/fetchNewsData.js';
+import updateSpeciesTable from './utils/fetchSpeciesData.js';
+import updateNewsTable from './utils/fetchNewsData.js';
 
 // Import a module for side effects only. This runs the module's global code, but doesn't actually import any values.
-import './helpers/cronJobs.js';
+import './utils/cronJobs.js';
 
 // Assign variables from config.js.
 const { express: { baseURL, host, port } } = config;
@@ -24,6 +24,12 @@ const app = express();
 
 // Use cors.
 app.use(cors());
+
+// Middlewares
+app.use((req, res, next) => {
+  console.log(req.method, req.path)
+  next();
+})
 
 // Controllers (APIs).
 app.use('/', RootRouter);

@@ -1,5 +1,5 @@
 import express from 'express';
-import { getMongoConnection } from '../helpers/mongoConnection.js';
+import { getMongoConnection } from '../utils/mongoConnection.js';
 
 const router = express.Router();
 
