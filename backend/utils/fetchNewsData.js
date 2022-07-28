@@ -32,7 +32,6 @@ async function fetchNewsPageCount() {
 
 async function fetchNewsData() {
   let newsPageCount = await fetchNewsPageCount();
-
   let newsObjectArray = [];
 
   for (let i = 0; i < newsPageCount; i++) {
@@ -73,13 +72,13 @@ export default async function updateNewsTable() {
   const newsData = await fetchNewsData();
   const db = getMongoConnection();
   
-  // Drop species collection in order to reseed with fresh data.
+  // Drop news collection in order to reseed with fresh data.
   if (await db.collection('news').find().count() > 0) {
     console.log('Dropping news collection.');
     db.collection('news').drop();
   }
 
-  // Take speciesData array and insert individual species objects into mongoDB as documents.
+  // Take newsData array and insert individual news objects into mongoDB as documents.
   newsData.map(newsItem => {
     console.log("Reseeding news collection.");
     db.collection('news').insertOne(newsItem);
