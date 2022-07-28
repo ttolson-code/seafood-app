@@ -1,25 +1,30 @@
 
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useParams } from 'react-router-dom';
 import AppHeader from '../app/AppHeader';
 import FishFinderNav from '../fish-finder/FishFinderNav';
 import FishFinderBanner from '../fish-finder/FishFinderBanner';
 import SpeciesList from './SpeciesList';
 import SpeciesProfile from './SpeciesProfile';
 import species from '../../apis/species';
+import PageSpinner from '../app/PageSpinner';
 import './css/fishFinderIndex.css'
 
 const FishFinderIndex = () => {
-  const [filter, setFilter] = useState('all');
+  const params = useParams();
+  const currentPage = params["*"]
+  const [filter, setFilter] = useState(`${currentPage}`);
   const [speciesList, setSpeciesList] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [speciesId, setSpeciesId] = useState({});
+  const [loading, setLoading] = useState(true);
   
-  async function fetchFishFinderAPI(filter) {
-    // const res = await fetch('https://api.seafood-app.com/fish-finder/all-profiles');
-    const response = await species.get(`/fish-finder/profiles/${filter}`);
+  const fetchFishFinderAPI = async (filter) => {
+    setLoading(true)
+
+    const response = await species.get(`/fish-finder/species/${filter}`);
     
     setSpeciesList(response.data);
-    setLoading(true);
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -32,26 +37,27 @@ const FishFinderIndex = () => {
   const handleFilterChange = (selectedFilter) => {
     setFilter(selectedFilter);
   }
-
-  if (!loading) {
-    return (
-      <div className="fishFinder-loader-container">
-        <div className="fishFinder-loader"></div>
-      </div>
-    )
+  
+  // Helper function to handle passing selected species Id to SpeciesProfile component.
+  const handleSelectedSpecies = (selectedSpecies) => {
+    setSpeciesId(selectedSpecies)
   }
 
   return (
     <main className="fishFinder-container">
       <AppHeader />
       <FishFinderBanner />
-      <FishFinderNav handleFilterChange={handleFilterChange} s/>
-      <Routes>
-        <Route path="all" element={<SpeciesList speciesList={speciesList} />} />
-        <Route path="wild" element={<SpeciesList speciesList={speciesList} />} />
-        <Route path="farmed" element={<SpeciesList speciesList={speciesList} />} />
-        <Route path=":speciesId" element={<SpeciesProfile />} />
-      </Routes>
+      <FishFinderNav handleFilterChange={handleFilterChange} />
+      { loading ? (
+        <PageSpinner />
+      ) : (
+        <Routes>
+          <Route path="all" element={<SpeciesList speciesList={speciesList} handleSelectedSpecies={handleSelectedSpecies} />} />
+          <Route path="wild" element={<SpeciesList speciesList={speciesList} handleSelectedSpecies={handleSelectedSpecies}/>} />
+          <Route path="farmed" element={<SpeciesList speciesList={speciesList} handleSelectedSpecies={handleSelectedSpecies}/>} />
+          <Route path=":speciesId" element={<SpeciesProfile speciesId={speciesId} />} />
+        </Routes>
+      )}
     </main>
   );
 };
