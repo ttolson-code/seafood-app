@@ -6,13 +6,12 @@ const LandingPage = (props) => {
 
   return (
     <div className="landing-container">
-
       <div className="landing-header-container">
         <header className="landing-header">Seafood App</header>
       </div>
 
       <div className="landing-button-container">
-        <Link className="landing-button" to="/fish-finder/profiles/all">Fish Finder</Link>
+        <Link className="landing-button" to="/fish-finder/species/all">Fish Finder</Link>
         <Link className="landing-button" to="/news">News</Link>
       </div>
     </div>
