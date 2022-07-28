@@ -14,7 +14,7 @@ const AppNav = () => {
     <nav className="appNav-container">
       <NavLink to="/" className="appNav-link">Home</NavLink>
       <NavLink 
-        to="/fish-finder/profiles/all"
+        to="/fish-finder/species/all"
         className={`appNav-link ${isActive ? 'active' : ''}`}
       >
         Fish Finder
