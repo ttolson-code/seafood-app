@@ -12,13 +12,13 @@
 
 **Fish Finder**
 
-- Display all available species, can be filterd by "all", "wild", "farmed".  
+- Display available species, can be filterd by "all", "wild", "farmed".  
 - Search bar that allows searching across all species and displaying real-time dropdown list of results. 
 - Individual pages of each species displaying species data. 
 
 **News**
 
-TODO: Add 'New' section features.
+- Display seafood news. 
 
 ## Data
 
@@ -26,7 +26,7 @@ All data used for this project is provided by fishwatch.gov
 
 https://www.fishwatch.gov/developers ( Info )
 
-https://www.fishwatch.gov/api/species ( api ) 
+https://www.fishwatch.gov/api/species ( api )
 
 ## Docker
 
