@@ -11,7 +11,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="fish-finder/profiles/*" element={<FishFinderIndex />} />
+          <Route path="fish-finder/species/*" element={<FishFinderIndex />} />
           <Route path="news" element={<NewsIndex />}/>
         </Routes>
       </BrowserRouter>
