@@ -1,15 +1,14 @@
-import 'dotenv/config'
 import express from 'express';
 import cors from 'cors';
 import config from './config.js';
 
-// Imports api controllers.
-import { RootRouter, FishFinderRouter, NewsRouter } from './routes/index.js';
+// Import routers.
+import { rootRouter, fishFinderRouter, newsRouter } from './routes/index.js';
 
-// Imports mongoConnection function to establish database connection.
+// Import mongoConnection function to establish database connection.
 import { mongoConnect } from './utils/mongoConnection.js';
 
-// Imports updateSpeciesTable() and updateNewsTable() function to reseed database on app startup.
+// Import updateSpeciesTable() and updateNewsTable() function to reseed database on app startup.
 import updateSpeciesTable from './utils/fetchSpeciesData.js';
 import updateNewsTable from './utils/fetchNewsData.js';
 
@@ -22,19 +21,20 @@ const { express: { baseURL, host, port } } = config;
 //  Create express server.
 const app = express();
 
-// Use cors.
+// Middlewares:
+// Use cors
 app.use(cors());
 
-// Middlewares
+// Log request to terminal
 app.use((req, res, next) => {
   console.log(req.method, req.path)
   next();
 })
 
-// Controllers (APIs).
-app.use('/', RootRouter);
-app.use('/fish-finder', FishFinderRouter);
-app.use('/news', NewsRouter);
+// Routes
+app.use('/', rootRouter);
+app.use('/fish-finder', fishFinderRouter);
+app.use('/news', newsRouter);
 
 // Connect to MongoDb and then start express server.
 mongoConnect()
