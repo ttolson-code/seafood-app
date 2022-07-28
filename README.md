@@ -1,11 +1,9 @@
 # Seafood App
 
-## Backend
+## Tech Stack
 - Node.js
 - Express.js
-- MongoDB 
-
-## Frontend 
+- MongoDB
 - React
 
 ## Features
