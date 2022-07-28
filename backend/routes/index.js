@@ -1,5 +1,5 @@
-import FishFinderRouter from './FishFinderRouter.js';
-import NewsRouter from './NewsRouter.js';
-import RootRouter from './RootRouter.js'
+import fishFinderRouter from './fishFinderRouter.js';
+import newsRouter from './newsRouter.js';
+import rootRouter from './rootRouter.js'
 
-export { FishFinderRouter, NewsRouter, RootRouter };
+export { fishFinderRouter, newsRouter, rootRouter };
