@@ -2,11 +2,10 @@ import fetch from 'node-fetch';
 import cheerio from 'cheerio';
 import MongoClient from 'mongodb';
 import { getMongoConnection } from './mongoConnection.js';
-// import { xml } from 'cheerio/lib/static';
 
 async function fetchNewsPageCount() {
   console.log("Fetching news page count from fishwatch.gov.")
-  const url = "https://www.fisheries.noaa.gov/news-and-announcements/news?title=&field_news_category_value%5Bfeature_story%5D=feature_story&field_topics_vocab_target_id%5B31%5D=31&field_species_vocab_target_id=&sort_by=created&page=0"
+  const url = "https://www.fisheries.noaa.gov/news-and-announcements/news?title=&field_news_category_value[feature_story]=feature_story&field_topics_vocab_target_id[2]=2&field_topics_vocab_target_id[1000000041]=1000000041&field_topics_vocab_target_id[1000000065]=1000000065&field_topics_vocab_target_id[1000044526]=1000044526&field_topics_vocab_target_id[31]=31&field_species_vocab_target_id=&sort_by=created&page=0"
   const response = await fetch(url);
   const responseHtml = await response.text();
 
@@ -36,7 +35,7 @@ async function fetchNewsData() {
 
   for (let i = 0; i < newsPageCount; i++) {
     console.log("Fetching news items from each news page.")
-    const url = `https://www.fisheries.noaa.gov/news-and-announcements/news?title=&field_news_category_value%5Bfeature_story%5D=feature_story&field_topics_vocab_target_id%5B31%5D=31&field_species_vocab_target_id=&sort_by=created&page=${i}`
+    const url = `https://www.fisheries.noaa.gov/news-and-announcements/news?title=&field_news_category_value[feature_story]=feature_story&field_topics_vocab_target_id[2]=2&field_topics_vocab_target_id[1000000041]=1000000041&field_topics_vocab_target_id[1000000065]=1000000065&field_topics_vocab_target_id[1000044526]=1000044526&field_topics_vocab_target_id[31]=31&field_species_vocab_target_id=&sort_by=created&page=${i}`
     const response = await fetch(url);
     const responseHtml = await response.text();
 
@@ -86,5 +85,14 @@ export default async function updateNewsTable() {
   console.log('Update news table cron job complete.');
 }
 
-
+// Base URL (Home news page)
 // https://www.fisheries.noaa.gov/news-and-announcements/news?title=&field_news_category_value[feature_story]=feature_story&sort_by=created&page=0
+
+// News URL with specific categories selected. 
+// Subjects: 
+// - Aquaculture
+// - Commerical Fishing
+// - Seafood Commerce & Trade
+// - Sustainable Fisheries
+// - Sustainable Seafood
+// https://www.fisheries.noaa.gov/news-and-announcements/news?title=&field_news_category_value[feature_story]=feature_story&field_topics_vocab_target_id[2]=2&field_topics_vocab_target_id[1000000041]=1000000041&field_topics_vocab_target_id[1000000065]=1000000065&field_topics_vocab_target_id[1000044526]=1000044526&field_topics_vocab_target_id[31]=31&field_species_vocab_target_id=&sort_by=created&page=0
