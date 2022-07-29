@@ -4,7 +4,8 @@ import {
   getAllSpecies, 
   getWildSpecies, 
   getFarmedSpecies,
-  getSpecies
+  getSpecies,
+  getSpeciesSearchResults
 } from '../controllers/fishFinderController.js'; 
 
 // Create express router
@@ -21,5 +22,7 @@ router.get('/species/farmed', getFarmedSpecies);
 
 // GET 'single' species
 router.get('/species/:id', getSpecies);
+
+router.get('/search/:searchText', getSpeciesSearchResults)
 
 export default router;

@@ -47,9 +47,21 @@ const getSpecies = async (req, res) => {
   res.end(JSON.stringify(speciesData, null, 4));
 };
 
+// GET search results
+const getSpeciesSearchResults = async (req, res) => {
+  const db = await getMongoConnection();
+
+  const { searchText } = req.params;
+
+  await db.collection('species').find({ "Species Name": new RegExp(searchText, 'i') }).toArray((err, items) => {
+    res.end(JSON.stringify(items, null, 4));
+  })
+};
+
 export {
   getAllSpecies,
   getWildSpecies,
   getFarmedSpecies,
-  getSpecies
+  getSpecies,
+  getSpeciesSearchResults
 }
