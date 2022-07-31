@@ -23,6 +23,7 @@ router.get('/species/farmed', getFarmedSpecies);
 // GET 'single' species
 router.get('/species/:id', getSpecies);
 
+// GET search results
 router.get('/search/:searchText', getSpeciesSearchResults)
 
 export default router;
