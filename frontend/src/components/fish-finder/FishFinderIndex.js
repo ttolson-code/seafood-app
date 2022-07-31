@@ -15,7 +15,8 @@ const FishFinderIndex = () => {
   const currentPage = params["*"]
   const [filter, setFilter] = useState(`${currentPage}`);
   const [speciesList, setSpeciesList] = useState({});
-  const [speciesId, setSpeciesId] = useState({});
+  const [speciesId, setSpeciesId] = useState('');
+  const [speciesName, setSpeciesName] = useState('');
   const [loading, setLoading] = useState(true);
   
   const fetchFishFinderAPI = async (filter) => {
@@ -39,14 +40,15 @@ const FishFinderIndex = () => {
   }
   
   // Helper function to handle passing selected species Id to SpeciesProfile component.
-  const handleSelectedSpecies = (selectedSpecies) => {
-    setSpeciesId(selectedSpecies)
+  const handleSelectedSpecies = (id, name) => {
+    setSpeciesId(id);
+    setSpeciesName(name);
   }
 
   return (
     <main className="fishFinder-container">
       <AppHeader />
-      <FishFinderBanner />
+      <FishFinderBanner speciesName={speciesName} />
       <FishFinderNav handleFilterChange={handleFilterChange} />
       { loading ? (
         <PageSpinner />

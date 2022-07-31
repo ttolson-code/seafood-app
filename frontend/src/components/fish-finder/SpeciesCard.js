@@ -5,7 +5,7 @@ import './css/speciesCard.css';
 const SpeciesCard = ({ speciesId, harvestType, illustration, name, alias, handleSelectedSpecies }) => {
   return (
     <li className="fishFinder-species-card">
-      <Link className="fishFinder-species-card-link" to={`/fish-finder/species/${speciesId}`} onClick={() => handleSelectedSpecies(speciesId)}>
+      <Link className="fishFinder-species-card-link" to={`/fish-finder/species/${speciesId}`} onClick={() => handleSelectedSpecies(speciesId, name)}>
         <div className="fishFinder-species-card-content">
           {harvestType === "Farmed" && 
             <div className="fishFinder-species-card-farmed-tag"><p>Farmed</p></div>

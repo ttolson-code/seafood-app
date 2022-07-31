@@ -6,7 +6,7 @@ import './css/fishFinderBanner.css'
 // instead it uses useLocation hook to get the current URL. 
 // It then isolates the last item in the URL and uses it as the banner text.
 
-const FishFinderBanner = () => {
+const FishFinderBanner = ({ speciesName }) => {
   // Grab current url pathname.
   const { pathname } = useLocation();
   
@@ -18,7 +18,7 @@ const FishFinderBanner = () => {
   return (
     <div className="fishFinder-species-banner">
       <h2 className="fishFinder-species-banner-content">
-        {(bannerText === 'all') || (bannerText === 'wild') || (bannerText === 'farmed') ? `${bannerText} Profiles` : bannerText}
+        {(bannerText === 'all') || (bannerText === 'wild') || (bannerText === 'farmed') ? `${bannerText} Profiles` : speciesName}
       </h2>
     </div>
   )
