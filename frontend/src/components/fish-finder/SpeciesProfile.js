@@ -41,7 +41,7 @@ const SpeciesProfile = ({ speciesId }) => {
             </p>
           </div>
 
-          <div className="species-profile-quote">
+          <div className="species-profile-quote" style={{ backgroundColor: speciesData["Quote Background Color"]}}>
             <h3>
               {!speciesData["Quote"] ? "N/A" : speciesData["Quote"]}
             </h3>
