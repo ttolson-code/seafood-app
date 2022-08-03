@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import species from '../../apis/species';
 import './css/fishFinderNav.css'
 
-const AutoComplete = () => {
+const AutoComplete = ({ handleSelectedSpecies }) => {
   const [searchText, setSearchText] = useState('');
   const [debouncedSearchText, setDebouncedSearchText] = useState(searchText);
   const [results, setResults] = useState([]);
+  const ref = useRef();
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -34,10 +35,40 @@ const AutoComplete = () => {
     }
   }, [debouncedSearchText]);
 
+  useEffect(() => {
+    const onBodyClick = (event) => {
+      if (ref.current.contains(event.target)) {
+        return;
+      }
+      setResults([]);
+    }
+
+    document.body.addEventListener('click', onBodyClick, { capture: true });
+
+    // useEffect cleanup function
+    return () => {
+      document.body.removeEventListener('click', onBodyClick, { capture: true });
+    };
+  }, []);
+
   const renderSearchResults = (results) => {
     return results.map((item) => {
       return (
-        <option value={item["Species Name"]}></option>
+        <NavLink 
+          key={item._id} 
+          className="autocomplete-item" 
+          to={`/fish-finder/species/${item._id}`} 
+          value={item["Species Name"]} 
+          onClick={() => { handleSelectedSpecies(item._id, item["Species Name"]) }} 
+        >
+          <div className="autocomplete-item-image-wrapper">
+            <img className="" src={item["Species Illustration Photo"].src} alt={item["Species Illustration Photo"].alt}></img>
+          </div>
+          <div>
+            <h4>{item["Species Name"]}</h4>
+            <p>{item["Species Aliases"].replace(/(<([^>]+)>)/ig, '')}</p>
+          </div>
+        </NavLink>
       );
     });
   }
@@ -45,26 +76,27 @@ const AutoComplete = () => {
   return (
     <>
       <label className="fishFinder-search-box-label" htmlFor="Search-box">Find Species:</label>
-      <input 
-        value={searchText}
-        onChange={(event) => setSearchText(event.target.value)}
-        type="search"
-        className="fishFinder-search-box"
-        list="results"
-      />
-      
-      <datalist id="results">
-        {renderSearchResults(results)}
-      </datalist>
+      <div ref={ref} className="autocomplete-wrapper">
+        <input 
+          value={searchText}
+          onChange={(event) => setSearchText(event.target.value)}
+          type="search"
+          className="fishFinder-search-box"
+          list="results"
+        />
+        <div className="autocomplete-results">
+          {renderSearchResults(results)}
+        </div>
+      </div>
     </>
   )
 }
 
-const FishFinderNav = ({ handleFilterChange }) => {
+const FishFinderNav = ({ handleFilterChange, handleSelectedSpecies }) => {
   return (
     <div className="fishFinder-nav-container">
       <div className="fishFinder-search-container">
-        <AutoComplete />
+        <AutoComplete handleSelectedSpecies={handleSelectedSpecies} />
       </div>
       <div className="fishFinder-filter-container">
         <NavLink to="/fish-finder/species/all" className="fishFinder-filter-button" onClick={() => handleFilterChange('all')}>All</NavLink>

@@ -49,7 +49,8 @@ const FishFinderIndex = () => {
     <main className="fishFinder-container">
       <AppHeader />
       <FishFinderBanner speciesName={speciesName} />
-      <FishFinderNav handleFilterChange={handleFilterChange} />
+      {/* Passing 'key' prop only to reset FishFinderNav's state on each rerender. Clears searchText and results. */}
+      <FishFinderNav key={currentPage} handleFilterChange={handleFilterChange} handleSelectedSpecies={handleSelectedSpecies} />
       { loading ? (
         <PageSpinner />
       ) : (
