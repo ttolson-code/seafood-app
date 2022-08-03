@@ -60,6 +60,10 @@
   color: #0093d0;
 }
 
+.fishFinder-filter-button:last-child {
+  margin-right: 0rem;
+}
+
 .autocomplete-wrapper {
   position: relative;
   display: flex;
