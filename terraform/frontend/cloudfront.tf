@@ -1,4 +1,4 @@
-
+# Create cloudfront distribution
 resource "aws_cloudfront_distribution" "cloudfront_distribution" {
   aliases             = ["*.${var.domain_name}", "${var.domain_name}", "www.${var.domain_name}"]
   enabled             = true // Required
@@ -7,11 +7,10 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
   origin { // Required
     domain_name = aws_s3_bucket.root_bucket.bucket_regional_domain_name
     origin_id   = aws_s3_bucket.root_bucket.bucket_regional_domain_name
-
     origin_access_control_id = aws_cloudfront_origin_access_control.cloudfront_distribution_origin_access_control.id
   }
 
-  default_cache_behavior {
+  default_cache_behavior { // Required
     viewer_protocol_policy = "redirect-to-https"                                   // Required
     allowed_methods        = ["GET", "HEAD"]                                       // Required
     cached_methods         = ["GET", "HEAD"]                                       // Required
@@ -40,6 +39,7 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
   }
 }
 
+# Configure cloudfront origin access control
 resource "aws_cloudfront_origin_access_control" "cloudfront_distribution_origin_access_control" {
   name                              = aws_s3_bucket.root_bucket.bucket_regional_domain_name
   origin_access_control_origin_type = "s3"
