@@ -8,9 +8,11 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     links:
-      - "express-server"
+      - 'express-server'
     ports:
-      - "3000:3000"
+      - '3000:3000'
+    environment:
+      REACT_APP_API_SERVER_BASE_URL: 'http://localhost:3001'
 
   # express
   express-server:
@@ -19,22 +21,11 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    depends_on: # ensure mongo-db is up before express container starts
-      - mongo-db
-    links:
-      - "mongo-db"
-    ports:
-      - "5000:5000"
-    environment:
-      DB_URL: "mongodb://mongo-db:27017/"
-      DB_NAME: "seafood-app"
-      HOST_ADDRESS: "localhost"
 
-  # database
-  mongo-db:
-    container_name: mongo-db
-    image: mongo:latest
     ports:
-      - "27017:27017"
+      - '3001:3001'
     environment:
-      MONGO_INITDB_DATABASE: "seafood-app"
+      DB_URL: 'mongodb+srv://seafood-app-mongo-account:5jjzhnHbsK5V6pHe@seafood-app.is4th.mongodb.net/?retryWrites=true&w=majority'
+      DB_NAME: 'seafood-app'
+      HOST_ADDRESS: 'localhost'
+      PORT: 3001
