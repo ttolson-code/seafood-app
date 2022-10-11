@@ -1,4 +1,4 @@
-import 'dotenv/config'
+import 'dotenv/config';
 
 const config = {
   express: {
@@ -12,8 +12,8 @@ const config = {
     options: {
       useUnifiedTopology: true,
       useNewUrlParser: true,
-    }
-  }
-}
+    },
+  },
+};
 
-export default config; 
+export default config;

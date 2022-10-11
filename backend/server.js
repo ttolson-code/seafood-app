@@ -16,7 +16,9 @@ import updateNewsTable from './utils/fetchNewsData.js';
 import './utils/cronJobs.js';
 
 // Assign variables from config.js.
-const { express: { baseURL, host, port } } = config;
+const {
+  express: { baseURL, host, port },
+} = config;
 
 //  Create express server.
 const app = express();
@@ -27,9 +29,9 @@ app.use(cors());
 
 // Log request to terminal
 app.use((req, res, next) => {
-  console.log(req.method, req.path)
+  console.log(req.method, req.path);
   next();
-})
+});
 
 // Routes
 app.use('/', rootRouter);
@@ -43,7 +45,9 @@ mongoConnect()
   .then(() => updateNewsTable())
   .then(() => {
     app.listen(port, () => {
-      console.log(`Express server is running on port ${baseURL}${host}\/${port}.`);
+      console.log(
+        `Express server is running on port ${baseURL}${host}\/${port}.`
+      );
     });
   })
   .catch((err) => {
@@ -51,4 +55,3 @@ mongoConnect()
     // Hard exit on a database connection error.
     process.exit(1);
   });
-
