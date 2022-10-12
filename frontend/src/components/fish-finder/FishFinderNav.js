@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import species from '../../apis/species';
-import './css/fishFinderNav.css'
+import './css/fishFinderNav.css';
 
 const AutoComplete = ({ handleSelectedSpecies }) => {
   const [searchText, setSearchText] = useState('');
@@ -16,16 +16,18 @@ const AutoComplete = ({ handleSelectedSpecies }) => {
 
     return () => {
       clearTimeout(timerId);
-    }
+    };
   }, [searchText]);
 
   useEffect(() => {
     const search = async () => {
-      const { data } = await species.get(`/fish-finder/search/${debouncedSearchText}`);
-      
+      const { data } = await species.get(
+        `/fish-finder/search/${debouncedSearchText}`
+      );
+
       if (data) {
         setResults(data);
-      };
+      }
     };
 
     if (debouncedSearchText) {
@@ -41,43 +43,51 @@ const AutoComplete = ({ handleSelectedSpecies }) => {
         return;
       }
       setResults([]);
-    }
+    };
 
     document.body.addEventListener('click', onBodyClick, { capture: true });
 
     // useEffect cleanup function
     return () => {
-      document.body.removeEventListener('click', onBodyClick, { capture: true });
+      document.body.removeEventListener('click', onBodyClick, {
+        capture: true,
+      });
     };
   }, []);
 
   const renderSearchResults = (results) => {
     return results.map((item) => {
       return (
-        <NavLink 
-          key={item._id} 
-          className="autocomplete-item" 
-          to={`/fish-finder/species/${item._id}`} 
-          value={item["Species Name"]} 
-          onClick={() => { handleSelectedSpecies(item._id, item["Species Name"]) }} 
+        <NavLink
+          key={item._id}
+          className="autocomplete-item"
+          to={`/fish-finder/species/${item._id}`}
+          value={item['Species Name']}
+          onClick={() => {
+            handleSelectedSpecies(item._id, item['Species Name']);
+          }}
         >
           <div className="autocomplete-item-image-wrapper">
-            <img className="" src={item["Species Illustration Photo"].src} alt={item["Species Illustration Photo"].alt}></img>
+            <img
+              className=""
+              src={item['Species Illustration Photo'].src}
+              alt={item['Species Illustration Photo'].alt}
+            ></img>
           </div>
           <div>
-            <h4>{item["Species Name"]}</h4>
-            <p>{item["Species Aliases"].replace(/(<([^>]+)>)/ig, '')}</p>
+            <h4>{item['Species Name']}</h4>
+            <p>{item['Species Aliases'].replace(/(<([^>]+)>)/gi, '')}</p>
           </div>
         </NavLink>
       );
     });
-  }
+  };
 
   return (
     <>
-      <label className="fishFinder-search-box-label" htmlFor="Search-box">Find Species:</label>
+      {/* <label className="fishFinder-search-box-label" htmlFor="Search-box">Find Species:</label> */}
       <div ref={ref} className="autocomplete-wrapper">
-        <input 
+        <input
           value={searchText}
           onChange={(event) => setSearchText(event.target.value)}
           type="search"
@@ -89,8 +99,8 @@ const AutoComplete = ({ handleSelectedSpecies }) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 const FishFinderNav = ({ handleFilterChange, handleSelectedSpecies }) => {
   return (
@@ -99,12 +109,30 @@ const FishFinderNav = ({ handleFilterChange, handleSelectedSpecies }) => {
         <AutoComplete handleSelectedSpecies={handleSelectedSpecies} />
       </div>
       <div className="fishFinder-filter-container">
-        <NavLink to="/fish-finder/species/all" className="fishFinder-filter-button" onClick={() => handleFilterChange('all')}>All</NavLink>
-        <NavLink to="/fish-finder/species/wild" className="fishFinder-filter-button" onClick={() => handleFilterChange('wild')}>Wild</NavLink>
-        <NavLink to="/fish-finder/species/farmed" className="fishFinder-filter-button" onClick={() => handleFilterChange('farmed')}>Farmed</NavLink>
+        <NavLink
+          to="/fish-finder/species/all"
+          className="fishFinder-filter-button"
+          onClick={() => handleFilterChange('all')}
+        >
+          All
+        </NavLink>
+        <NavLink
+          to="/fish-finder/species/wild"
+          className="fishFinder-filter-button"
+          onClick={() => handleFilterChange('wild')}
+        >
+          Wild
+        </NavLink>
+        <NavLink
+          to="/fish-finder/species/farmed"
+          className="fishFinder-filter-button"
+          onClick={() => handleFilterChange('farmed')}
+        >
+          Farmed
+        </NavLink>
       </div>
-    </div>  
+    </div>
   );
-}
+};
 
 export default FishFinderNav;
