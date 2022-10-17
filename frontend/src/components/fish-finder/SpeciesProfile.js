@@ -1,36 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import species from '../../apis/species';
-import PageSpinner from '../app/PageSpinner';
+import React from 'react';
 import './css/speciesProfile.css';
 
-const SpeciesProfile = ({ setSpeciesName }) => {
-  const params = useParams();
-  const speciesId = params['*'];
-  const [speciesData, setSpeciesData] = useState({});
-  const [loading, setLoading] = useState(true);
-
-  const fetchFishFinderAPI = async (speciesId) => {
-    if (typeof speciesId === 'string') {
-      setLoading(true);
-      const response = await species.get(`/fish-finder/species/${speciesId}`);
-      setSpeciesData(response.data);
-      setSpeciesName(response.data['Species Name']);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (speciesId) {
-      fetchFishFinderAPI(speciesId);
-    }
-  }, [speciesId]);
-
-  return (
-    <>
-      {loading ? (
-        <PageSpinner />
-      ) : (
+const SpeciesProfile = ({ speciesData }) => {
+  if (!Array.isArray(speciesData)) {
+    return (
+      <>
         <div className="species-profile-container">
           <img
             className="fishFinder-species-profile-illustration"
@@ -145,9 +119,11 @@ const SpeciesProfile = ({ setSpeciesName }) => {
             </table>
           </div>
         </div>
-      )}
-    </>
-  );
+      </>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default SpeciesProfile;

@@ -13,7 +13,7 @@ const FishFinderIndex = () => {
   const params = useParams();
   const currentPage = params['*'];
   const [filter, setFilter] = useState(currentPage); // 'all', 'wild', 'farmed', or speciesId
-  const [speciesData, setspeciesData] = useState({});
+  const [speciesData, setSpeciesData] = useState({});
   const [speciesName, setSpeciesName] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -22,7 +22,12 @@ const FishFinderIndex = () => {
 
     const response = await species.get(`/fish-finder/species/${filter}`);
 
-    setspeciesData(response.data);
+    setSpeciesData(response.data);
+
+    if (!Array.isArray(response.data)) {
+      setSpeciesName(response.data['Species Name']);
+    }
+
     setLoading(false);
   };
 
@@ -31,8 +36,6 @@ const FishFinderIndex = () => {
       fetchFishFinderAPI(filter);
     }
   }, [filter]);
-
-  console.log(filter);
 
   return (
     <main className="fishFinder-container">
@@ -46,24 +49,25 @@ const FishFinderIndex = () => {
         <Routes>
           <Route
             path="all"
-            element={<SpeciesList speciesData={speciesData} />}
+            element={
+              <SpeciesList speciesData={speciesData} setFilter={setFilter} />
+            }
           />
           <Route
             path="wild"
-            element={<SpeciesList speciesData={speciesData} />}
+            element={
+              <SpeciesList speciesData={speciesData} setFilter={setFilter} />
+            }
           />
           <Route
             path="farmed"
-            element={<SpeciesList speciesData={speciesData} />}
+            element={
+              <SpeciesList speciesData={speciesData} setFilter={setFilter} />
+            }
           />
           <Route
             path=":speciesId"
-            element={
-              <SpeciesProfile
-                setSpeciesName={setSpeciesName}
-                speciesData={speciesData}
-              />
-            }
+            element={<SpeciesProfile speciesData={speciesData} />}
           />
         </Routes>
       )}

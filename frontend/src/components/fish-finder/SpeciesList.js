@@ -2,7 +2,7 @@ import React from 'react';
 import SpeciesCard from './SpeciesCard';
 import './css/speciesList.css';
 
-const SpeciesList = ({ speciesData }) => {
+const SpeciesList = ({ speciesData, setFilter }) => {
   const renderSpeciesCards = (speciesData) => {
     // Ensure data is an Array (prevents individual species data from being passed)
     if (Array.isArray(speciesData)) {
@@ -16,6 +16,7 @@ const SpeciesList = ({ speciesData }) => {
             alias={species['Species Aliases'].replace(/(<([^>]+)>)/gi, '')}
             harvestType={species['Harvest Type']}
             path={species['Path']}
+            setFilter={setFilter}
           />
         );
       });
