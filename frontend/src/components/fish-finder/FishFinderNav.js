@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import species from '../../apis/species';
 import './css/fishFinderNav.css';
 
-const AutoComplete = ({ handleSelectedSpecies }) => {
+const AutoComplete = ({ setFilter }) => {
   const [searchText, setSearchText] = useState('');
   const [debouncedSearchText, setDebouncedSearchText] = useState(searchText);
   const [results, setResults] = useState([]);
@@ -64,7 +64,7 @@ const AutoComplete = ({ handleSelectedSpecies }) => {
           to={`/fish-finder/species/${item._id}`}
           value={item['Species Name']}
           onClick={() => {
-            handleSelectedSpecies(item._id, item['Species Name']);
+            setFilter(item._id);
           }}
         >
           <div className="autocomplete-item-image-wrapper">
@@ -102,31 +102,31 @@ const AutoComplete = ({ handleSelectedSpecies }) => {
   );
 };
 
-const FishFinderNav = ({ handleFilterChange, handleSelectedSpecies }) => {
+const FishFinderNav = ({ setFilter }) => {
   return (
     <div className="fishFinder-nav-container">
       <div className="fishFinder-search-container">
-        <AutoComplete handleSelectedSpecies={handleSelectedSpecies} />
+        <AutoComplete setFilter={setFilter} />
       </div>
       <div className="fishFinder-filter-container">
         <NavLink
           to="/fish-finder/species/all"
           className="fishFinder-filter-button"
-          onClick={() => handleFilterChange('all')}
+          onClick={() => setFilter('all')}
         >
           All
         </NavLink>
         <NavLink
           to="/fish-finder/species/wild"
           className="fishFinder-filter-button"
-          onClick={() => handleFilterChange('wild')}
+          onClick={() => setFilter('wild')}
         >
           Wild
         </NavLink>
         <NavLink
           to="/fish-finder/species/farmed"
           className="fishFinder-filter-button"
-          onClick={() => handleFilterChange('farmed')}
+          onClick={() => setFilter('farmed')}
         >
           Farmed
         </NavLink>
