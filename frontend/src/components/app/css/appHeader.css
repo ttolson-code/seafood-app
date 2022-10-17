@@ -1,7 +1,7 @@
 .appHeader-container {
   background-color: #282c34;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   width: 100%;
   /* margin: auto; */
 }
@@ -33,5 +33,3 @@
     margin: auto;
   }
 }
-
-
