@@ -25,6 +25,13 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
     }
   }
 
+  custom_error_response {  // Optional - used when hosting react apps in s3
+    error_code = 403
+    response_page_path = "/index.html"
+    response_code = 200
+
+  }
+
   restrictions { // Required
     geo_restriction {
       restriction_type = "whitelist"
