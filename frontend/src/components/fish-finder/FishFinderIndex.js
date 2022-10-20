@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route, useParams, useHistory } from 'react-router-dom';
 import AppHeader from '../app/AppHeader';
 import FishFinderNav from '../fish-finder/FishFinderNav';
 import FishFinderBanner from '../fish-finder/FishFinderBanner';
@@ -36,6 +36,13 @@ const FishFinderIndex = () => {
       fetchFishFinderAPI(filter);
     }
   }, [filter]);
+
+  // Had to add this useEffect in order to trigger a refetch when user clicks browser back button
+  // However was not needed to refetch on browser refresh, that seemed to be satisfed by 'useState(currentPage)'
+  // Need to investigate
+  useEffect(() => {
+    setFilter(currentPage);
+  }, [currentPage]);
 
   return (
     <main className="fishFinder-container">
